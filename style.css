@@ -1,0 +1,34 @@
+body {
+}
+
+header {
+    border: 1px solid black;
+    background-color: palegreen;
+    text-align: center;
+}
+main {
+    display: flex;
+}
+
+
+.left {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 30vw;
+}
+
+.today {
+    height: 20vh;
+    background-color: palevioletred;
+}
+
+.todo {
+    height: 60vh;
+    background-color: peachpuff;
+}
+
+.calendar {
+    background-color: powderblue;
+    width: 80vw;
+}
