@@ -7,9 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Schedule</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./Scripts/calendar.js"></script>
     <script src="./Scripts/today.js"></script>
     <script src="./Scripts/todo.js"></script>
+
 </head>
 
 <body>
@@ -17,22 +20,28 @@
         <h1>CALENDAR</h1>
     </header>
 
-<main>
-    <div class="left">
-        <div class="today">
-            TODAY
+    <main>
+        <div class="left">
+            <div class="today">
+                TODAY
+            </div>
+
+            <div class="todo">
+                <ul>
+                    <!-- Todos are injected from JavaSript -->
+                </ul>
+                <div>
+                    <input type="text" placeholder="add task" id="input">
+                    <button>Add a Task</button>
+                </div>
+            </div>
         </div>
 
-        <div class="todo">
-            TODO
+        <div class="calendar">
+            CALENDAR
         </div>
-    </div>
 
-    <div class="calendar">
-        CALENDAR
-    </div>
-
-</main>
+    </main>
 
 </body>
 
