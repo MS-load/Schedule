@@ -28,7 +28,7 @@ main {
     background-color: peachpuff;
 }
 
-.calendar {
+.calendar.container {
     background-color: powderblue;
     width: 80vw;
 }
