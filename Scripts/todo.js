@@ -32,11 +32,11 @@ function addTask() {
 
     $("ul").append("<li>" + task + " " + taskTime + " " + taskDate + "</li>")
 
-    // const listOfTasks = []
-    // $("ul li").each(function () { listOfTasks.push($(this).text()) })
+    const listOfTasks = []
+    $("ul li").each(function () { listOfTasks.push($(this).text()) })
 
-    // console.log(listOfTasks)
-    saveTaskToLS("task", task)
+    console.log(listOfTasks)
+    saveTaskToLS("task", listOfTasks)
     saveTaskToLS("task-time", taskTime)
     saveTaskToLS("task-date", taskDate)
 
