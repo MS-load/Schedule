@@ -19,13 +19,19 @@ function restoreTaskList() {
 }
 
 function addEventListener() {
-    $("button").click(addTask)
+    $(":submit").click(addTask)
 }
 
 function addTask() {
     //imp:need to change the input to a form to be able to store multiple data!!
-    let task = $("#input").val()
-    $("ul").append("<li>" + task + "</li>")
+    let task = $(":text").val()
+    let taskDate = $("#taskDate").val() //Why cant I use type here ?
+    let taskTime = $("#taskTime").val() // Why cant i use type here
+
+    console.log(taskDate)
+    console.log(taskTime)
+
+    $("ul").append("<li>" + task + " " + taskTime + " " + taskDate + "</li>")
 
     const listOfTasks = []
     $("ul li").each(function () { listOfTasks.push($(this).text()) })
@@ -36,7 +42,7 @@ function addTask() {
     addPrefix()
     addSuffix()
 
-    $("#input").val("")
+    $(":text").val("")
 
 }
 

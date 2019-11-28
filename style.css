@@ -1,15 +1,14 @@
-body {
-}
+body {}
 
 header {
     border: 1px solid black;
     background-color: palegreen;
     text-align: center;
 }
+
 main {
     display: flex;
 }
-
 
 .left {
     display: flex;
@@ -25,7 +24,12 @@ main {
 
 .todo {
     height: 60vh;
-    background-color: peachpuff;
+    background: rgb(34, 193, 195);
+    background: linear-gradient(71deg, rgba(34, 193, 195, 1) 0%, rgba(113, 124, 184, 1) 50%);
+}
+
+input {
+    width: 80%;
 }
 
 .calendar {

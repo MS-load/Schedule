@@ -29,15 +29,11 @@
                 <ul>
                     <!-- Todos are injected from JavaSript -->
                 </ul>
-                <div>
-                    <input type="text" placeholder="add task" id="input">
-                    <button>Add a Task</button>
-                </div>
                 <form action="" method="get">
-                    <input type="text" name="text" id="text" placeholder="add task">
-                    <input type="time" name="time" id="time">
-                    <input type="date" name="date" id="date">
-                    <input type="button" value="Add task">
+                    <input type="text" name="text" id="text" placeholder="add task" required>
+                    <input type="time" name="time" id="taskTime">
+                    <input type="date" name="date" id="taskDate" required>
+                    <input type="submit" value="Add task">
                 </form>
             </div>
         </div>
@@ -45,7 +41,6 @@
         <div class="calendar">
             CALENDAR
         </div>
-
     </main>
 
 </body>
