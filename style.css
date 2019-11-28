@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-body {}
-=======
 body {
     height: 100%;
 }
->>>>>>> 909b95388aa9b89df440818583c14540616a3dec
 
 header {
     border: 1px solid black;
@@ -53,12 +49,6 @@ form{
     align-content: center;
 }
 
-<<<<<<< HEAD
-.calendar {
-    background-color: powderblue;
-    width: 80vw;
-}
-=======
 .calendar-container {
     background-color:lightgrey;
     width: 80vw;   
@@ -94,4 +84,3 @@ form{
 }
 
 
->>>>>>> 909b95388aa9b89df440818583c14540616a3dec
