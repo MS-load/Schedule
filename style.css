@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 body {}
+=======
+body {
+    height: 100%;
+}
+>>>>>>> 909b95388aa9b89df440818583c14540616a3dec
 
 header {
     border: 1px solid black;
@@ -32,7 +38,6 @@ main {
     font-size: 1.2rem;
 }  
 
-
 .todo {
     height: 60vh;
     background: rgb(34, 193, 195);
@@ -48,7 +53,45 @@ form{
     align-content: center;
 }
 
+<<<<<<< HEAD
 .calendar {
     background-color: powderblue;
     width: 80vw;
 }
+=======
+.calendar-container {
+    background-color:lightgrey;
+    width: 80vw;   
+     
+}
+
+.weekday-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.date-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 100%;
+}
+
+.weekday-container div {
+    border: 1px solid black;
+    background-color: white;
+    margin: 0.4rem;
+    padding: 0.5rem;
+    font-size: 15pt;
+}
+
+.date-container div {
+    border: 1px solid black;
+    background-color: white;
+    margin: 0.4rem;
+    padding: 0.5rem;
+    font-size: 15pt;
+
+}
+
+
+>>>>>>> 909b95388aa9b89df440818583c14540616a3dec
