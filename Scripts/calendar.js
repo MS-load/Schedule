@@ -1,10 +1,54 @@
+window.addEventListener('load', loadPage)
+
+function loadPage() {
+getMonthFromApi()
+}
+
+
+
+
+function getMonthFromApi() {
+$.ajax({
+    url: "http://api.dryg.net/dagar/v2.1/2019/12?callback=dinmetod",
+    type: "GET",
+    dataType: "jsonp",
+    complete: function(response) {
+        const month = response.responseJSON.dagar
+
+        for (const day of month) {
+            if (day.helgdag) {
+                console.log(day.datum)
+            }
+        }
+    }
+
+})
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* window.addEventListener('load', loadPage) 
 
 
 function loadPage () {
     displayCalendar()
 } */
-
+/* 
 let body = document.getElementsByTagName('body')[0];
 
 today = new Date();
@@ -80,4 +124,6 @@ function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
 
-}
+} */
+
+
