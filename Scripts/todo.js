@@ -23,6 +23,7 @@ function addEventListener() {
 }
 
 function addTask() {
+    //imp:need to change the input to a form to be able to store multiple data!!
     let task = $("#input").val()
     $("ul").append("<li>" + task + "</li>")
 

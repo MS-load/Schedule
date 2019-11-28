@@ -12,7 +12,6 @@
     <script src="./Scripts/calendar.js"></script>
     <script src="./Scripts/today.js"></script>
     <script src="./Scripts/todo.js"></script>
-
 </head>
 
 <body>
@@ -34,11 +33,46 @@
                     <input type="text" placeholder="add task" id="input">
                     <button>Add a Task</button>
                 </div>
+                <form action="" method="get">
+                    <input type="text" name="text" id="text" placeholder="add task">
+                    <input type="time" name="time" id="time">
+                    <input type="date" name="date" id="date">
+                    <input type="button" value="Add task">
+                </form>
             </div>
         </div>
 
         <div class="calendar">
-            CALENDAR
+            <table>
+                <caption>
+                    <span id="month">Month</span>
+                    </br>
+                    <span id="l-arrow">&lt</span>
+                    <span id="l-arrow">&gt</span>
+                    </br>
+                    <span id="year">year</span>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Sat</th>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <td class="empty"></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                </tbody>
+            </table>
         </div>
 
     </main>
