@@ -4,11 +4,14 @@ $(document).ready(function () {
 })
 
 
-
 function restoreTaskList() {
     let data = localStorage.getItem("task")
+    let data2 = localStorage.getItem("task-time")
+    let data3 = localStorage.getItem("task-date")
     if (data) {
         let restoreList = JSON.parse(data)
+        let restoreList1 = JSON.parse(data)
+        let restoreList2 = JSON.parse(data)
         console.log(restoreList)
         for (var i = 0; i < (restoreList.length); i++) {
             $("ul").append("<li>" + restoreList[i] + "</li>")
@@ -27,13 +30,19 @@ function addTask() {
     let taskDate = $("#taskDate").val() //Why cant I use type here ?
     let taskTime = $("#taskTime").val() // Why cant i use type here ?
 
-    console.log(taskDate)
-    console.log(taskTime)
-
     $("ul").append("<li>" + task + " " + taskTime + " " + taskDate + "</li>")
 
     const listOfTasks = []
     $("ul li").each(function () { listOfTasks.push($(this).text()) })
+
+    var fields = {};
+    $("#theForm").find(":input").each(function () {
+        // The selector will match buttons; if you want to filter
+        // them out, check `this.tagName` and `this.type`; see
+        // below
+        fields[this.name] = $(this).val();
+    });
+    var taskItems = { fields: fields };
 
     console.log(listOfTasks)
     saveTaskToLS("task", listOfTasks)
