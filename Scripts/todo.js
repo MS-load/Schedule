@@ -23,21 +23,22 @@ function addEventListener() {
 }
 
 function addTask() {
-    //imp:need to change the input to a form to be able to store multiple data!!
     let task = $(":text").val()
     let taskDate = $("#taskDate").val() //Why cant I use type here ?
-    let taskTime = $("#taskTime").val() // Why cant i use type here
+    let taskTime = $("#taskTime").val() // Why cant i use type here ?
 
     console.log(taskDate)
     console.log(taskTime)
 
     $("ul").append("<li>" + task + " " + taskTime + " " + taskDate + "</li>")
 
-    const listOfTasks = []
-    $("ul li").each(function () { listOfTasks.push($(this).text()) })
+    // const listOfTasks = []
+    // $("ul li").each(function () { listOfTasks.push($(this).text()) })
 
-    console.log(listOfTasks)
-    saveTaskToLS(listOfTasks)
+    // console.log(listOfTasks)
+    saveTaskToLS("task", task)
+    saveTaskToLS("task-time", taskTime)
+    saveTaskToLS("task-date", taskDate)
 
     addPrefix()
     addSuffix()
@@ -59,12 +60,12 @@ function removeTask() {
 }
 
 
-function saveTaskToLS(task) {
-    localStorage.setItem('task', JSON.stringify(task))
+function saveTaskToLS(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
 }
 
-function getTaskFromLS() {
-    return console.log(JSON.parse(localStorage.getItem('task')) || [])
+function getTaskFromLS(key) {
+    return console.log(JSON.parse(localStorage.getItem(key)) || [])
 }
 
 function clearTaskFromLS() {
