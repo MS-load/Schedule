@@ -1,4 +1,5 @@
 body {
+    height: 100%;
 }
 
 header {
@@ -38,7 +39,38 @@ main {
     background-color: peachpuff;
 }
 
-.calendar {
-    background-color: powderblue;
-    width: 80vw;
+.calendar-container {
+    background-color:lightgrey;
+    width: 80vw;   
+     
 }
+
+.weekday-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.date-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 100%;
+}
+
+.weekday-container div {
+    border: 1px solid black;
+    background-color: white;
+    margin: 0.4rem;
+    padding: 0.5rem;
+    font-size: 15pt;
+}
+
+.date-container div {
+    border: 1px solid black;
+    background-color: white;
+    margin: 0.4rem;
+    padding: 0.5rem;
+    font-size: 15pt;
+
+}
+
+

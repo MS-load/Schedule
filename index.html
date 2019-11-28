@@ -7,9 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Schedule</title>
     <link rel="stylesheet" href="style.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./Scripts/calendar.js"></script>
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./Scripts/calendar.js" defer></script>
+>>>>>>> de03cf930808c4a53633a26df9dfa495208a9982
     <script src="./Scripts/today.js"></script>
     <script src="./Scripts/todo.js"></script>
 </head>
@@ -22,16 +27,17 @@
     <main>
         <div class="left">
             <div class="today">
-                    <p>
-                        <span class="year"></span>
-                        <span class="month"></span>
-                        <span class="day"></span>
-                        <span class="hour"></span>
-                        <span class="minute"></span>
-                        <span class="second"></span>
-                    </p>
+                <p>
+                    <span class="year"></span>
+                    <span class="month"></span>
+                    <span class="day"></span>
+                    <span class="hour"></span>
+                    <span class="minute"></span>
+                    <span class="second"></span>
+                </p>
                 <p class="weekday">Onsdag</p>
                 <p class="today-date"></p>
+
             </div>
 
             <div class="todo">
@@ -39,9 +45,18 @@
             </div>
         </div>
 
-        <div class="calendar">
-            CALENDAR
+        <div class="calendar-container">
+
+            <h2 id="calendar"></h2>
+
+            <div id="dateContainer" class="date-container">
+
+            </div>
         </div>
+
+
+
+
 
     </main>
 
