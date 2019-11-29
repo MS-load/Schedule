@@ -13,9 +13,10 @@
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./Scripts/today.js"></script>
     <script src="./Scripts/calendar.js" defer></script>
     <script src="./Scripts/todo.js"></script>
-    <script src="./Scripts/today.js"></script>
+    
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans:400,700&display=swap" rel="stylesheet">
@@ -32,18 +33,10 @@
         <div class="left">
             <!-- CURRENT DATE AND TIME -->
             <div class="today">
-                <p>
-                    <span class="year"></span>
-                    <span class="month"></span>
-                    <span class="day"></span>
-                    <span class="hour"></span>
-                    <span class="minute"></span>
-                    <span class="second"></span>
-                </p>
-                <p class="weekday">Onsdag</p>
-                <p class="today-date"></p>
-
-            </div>
+                <p class="date"></p>
+                <p class="weekday"></p>
+                <p class="time"></p>
+        </div>
 
             <!-- TASKS -->
             <div class="todo">

@@ -33,12 +33,8 @@ main {
     height: 20%;
 }
 
-.today span:nth-child(1), span:nth-child(3) {
-    padding-right: 1rem;
-}
-
-.today p:nth-child(2) {
-    font-size: 1.2rem;
+.today > p {
+    margin: 0.3rem 0 0 0; 
 }
 
 .todo {
