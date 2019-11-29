@@ -1,30 +1,37 @@
 body {
-    height: 100%;
+    height: 100vh;
+    margin:0;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     border: 1px solid black;
-    background-color: palegreen;
+    background: #00203FFF;
+    color: #ADEFD1FF;
     text-align: center;
+    flex-grow: 1;
 }
 
 main {
+    flex-grow: 10;
     display: flex;
 }
 
 .left {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 80vh;
-    width: 30vw;
+   
 }
 
 .today {
-    height: 20vh;
-    background-color: palevioletred;
+    color: #00203FFF;
+    background: #ADEFD1FF;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height:20%;
 }
 .today span:nth-child(1), span:nth-child(3) {
     padding-right: 1rem;
@@ -35,23 +42,36 @@ main {
 }  
 
 .todo {
-    height: 60vh;
-    background: rgb(34, 193, 195);
-    background: linear-gradient(71deg, rgba(34, 193, 195, 1) 0%, rgba(113, 124, 184, 1) 50%);
+    background: #00203FFF;
+    color: #ADEFD1FF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1rem;
+    height:80%;
 }
 
 form{
-    width:80%; 
+     
     margin:0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
+
+}
+
+ul {
+    list-style-type:none;
+    padding:0;
+    margin:0;
 }
 
 .calendar-container {
-    background-color:lightgrey;
-    width: 80vw;   
+    background-color:lightgrey; 
+    flex-grow: 20;
+  
      
 }
 
