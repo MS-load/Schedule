@@ -1,48 +1,75 @@
 body {
-    height: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     border: 1px solid black;
-    background-color: palegreen;
+    background: #00203FFF;
+    color: #ADEFD1FF;
     text-align: center;
-}
-main {
-    display: flex;
+    flex-grow: 1;
 }
 
+main {
+    flex-grow: 10;
+    display: flex;
+}
 
 .left {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 80vh;
-    width: 30vw;
 }
 
 .today {
-    height: 20vh;
-    background-color: palevioletred;
+    color: #00203FFF;
+    background: #ADEFD1FF;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 20%;
 }
+
 .today span:nth-child(1), span:nth-child(3) {
     padding-right: 1rem;
-} 
+}
 
 .today p:nth-child(2) {
     font-size: 1.2rem;
-}  
+}
 
 .todo {
-    height: 60vh;
-    background-color: peachpuff;
+    background: #00203FFF;
+    color: #ADEFD1FF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1rem;
+    height: 80%;
+}
+
+form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .calendar-container {
-    background-color:lightgrey;
-    width: 80vw;   
-     
+    background-color: lightgrey;
+    flex-grow: 20;
+    display: none;
 }
 
 .weekday-container {
@@ -70,7 +97,21 @@ main {
     margin: 0.4rem;
     padding: 0.5rem;
     font-size: 15pt;
-
 }
 
+/*Responsive Design*/
 
+@media (min-width: 768px) {
+    html {
+        font-size: 1.2rem;
+    }
+    .calendar-container {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    html {
+        font-size: 1.4rem;
+    }
+}

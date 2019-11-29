@@ -3,6 +3,7 @@ window.addEventListener('load', loadSite)
 function loadSite() {
 
     const d = new Date();
+    console.log(d)
     document.querySelector(".year").innerHTML = d.getFullYear();
 
     //change 0-11 to January-December
