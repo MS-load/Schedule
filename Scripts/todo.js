@@ -2,15 +2,15 @@
 
 
 $(document).ready(function () {
-    addEventListener()
+    //addEventListener()
     restoreTaskList()
     removeTask()
 })
 
 
-function addEventListener() {
+/* function addEventListener() {
     $(":submit").click(getTask)
-}
+} */
 
 /**
  * Restores the existing task list from Local Storage
@@ -43,12 +43,24 @@ function getTask() {
 
     showTask(task, taskDate, taskTime)
 
-    const listOfTasks = []
-    
-    $("form").each(function () { listOfTasks.push(taskItemsObj) })
+    let listOfTasks = JSON.parse(localStorage.getItem('task-details'))
+
+    if(!listOfTasks) {
+        listOfTasks = []
+    }
+
+    listOfTasks.push(taskItemsObj)
+
+    localStorage.setItem('task-details', JSON.stringify(listOfTasks))
+
+    console.log(JSON.parse(localStorage.getItem('task-details')))
+
+
+
+    //$("ul li").each(function () { listOfTasks.push($(this).text()) })
 
     console.log(listOfTasks)
-    saveTaskToLS("task-details", listOfTasks)
+    //saveTaskToLS("task-details", listOfTasks)
 
     $(":text").val("")
 }
@@ -58,9 +70,9 @@ function showTask(task, taskDate, taskTime) {
 }
 
 function removeTask() {
-    $('input[type="checkbox"]').click(function(){
-        if($(this).prop("checked") == true){
-         console.log("test")   
+    $('input[type="checkbox"]').click(function () {
+        if ($(this).prop("checked") == true) {
+            console.log("test")
         }
     })
 }
