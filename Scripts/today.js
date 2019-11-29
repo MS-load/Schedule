@@ -1,43 +1,37 @@
-//TODO
-//setinterval för att få tiden att uppdateras.
-//create element i javascript istället för i html
-
-
 window.addEventListener( 'load', loadSite)
 
 function loadSite() {
 
-    //detta behöver läggas i en funktion som man kallar på
-    let timeContainer = document.getElementsByClassName("today")[0]
-    let currentTime = new Date();
+    getTimeNow()
 
-    setInterval(() => {
-        currentTime.setSeconds(currentTime.getSeconds() + 1)
-        console.log(currentTime.toTimeString())
-        timeContainer.innerHTML = currentTime.toLocaleString()
-    }, 1000);
-
-
-    /* document.querySelector(".year").innerHTML = d.getFullYear();
-
-    getMonthName();
-
-    document.querySelector(".day").innerHTML = d.getDate(); */
-
-    /* getTwoDigitsHour();
-
-    getTwoDigitsMinute(); */
-
-    // getWeekdayName();
 }
 
+
+function getTimeNow() {
+
+const d = new Date();
+const dateContainer = document.getElementsByClassName("date") [0]
+const weekdayContainer = document.getElementsByClassName("weekday")[0]
+const timeContainer = document.getElementsByClassName("time")[0]
+
+
+/**
+ * changes 0-6 to Sunday-Saturday
+ */
+const weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+const weekdayName = weekday[d.getDay()];
 
 /**
  * changes 0-11 to january-febuary
  */
-function getMonthName() {
-    const d = new Date();
-    const month = new Array(11);
+const month = new Array(11);
     month[0] = "January";
     month[1] = "February";
     month[2] = "March";
@@ -50,63 +44,15 @@ function getMonthName() {
     month[9] = "October";
     month[10] = "November";
     month[11] = "December";
-   
-    const n = month[d.getMonth()];
-    document.querySelector(".month").innerHTML = n;
-  }
-
-/**
- * Add a 0 before hour 0-9
- * 
- *  */ 
-function getTwoDigitsHour() {
-    const d = new Date();
-    const currentHour = d.getHours();
+    const monthName = month[d.getMonth()];
     
-    if (currentHour < 10)
-   {
-    document.querySelector(".hour").innerHTML = "0" + d.getHours() +" :";
-   }
-else
-   {
-    document.querySelector(".hour").innerHTML = d.getHours() +" :";
-   }
-} 
-
-/**
- * Add a 0 before minute 0-9
- * 
- *  */ 
-function getTwoDigitsMinute() {
-    const d = new Date();
-    const currentMinute = d.getMinutes();
     
-    if (currentMinute < 10)
-   {
-    document.querySelector(".minute").innerHTML = "0" + d.getMinutes();
-   }
-else
-   {
-    document.querySelector(".minute").innerHTML = d.getMinutes();
-   }
-} 
-
-
-/**
- * changes 0-6 to monday-sunday
- */
-function getWeekdayName() {
-    const d = new Date();
-    const weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-  
-    const n = weekday[d.getDay()];
-    document.querySelector(".weekday").innerHTML = n;
-  }
-
+setInterval(() => {
+    d.setSeconds(d.getSeconds() + 1)
+    
+    dateContainer.innerHTML =  d.getDate() +" "+ monthName +" "+  d.getFullYear();
+    weekdayContainer.innerHTML = weekdayName;
+    timeContainer.innerHTML = d.getHours() +":"+ (d.getMinutes()<10?'0':'') + d.getMinutes()  +":"+  (d.getSeconds()<10?'0':'') + d.getSeconds();
+}, 1000);
+}
+    
