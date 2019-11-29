@@ -51,9 +51,9 @@ function getMonthName() {
  *  */ 
 function getTwoDigitsHour() {
     const d = new Date();
-    const currentTime = d.getHours();
+    const currentHour = d.getHours();
     
-    if (currentTime < 10)
+    if (currentHour < 10)
    {
     document.querySelector(".hour").innerHTML = "0" + d.getHours() +" :";
    }
@@ -69,9 +69,9 @@ else
  *  */ 
 function getTwoDigitsMinute() {
     const d = new Date();
-    const currentTime = d.getMinutes();
+    const currentMinute = d.getMinutes();
     
-    if (currentTime < 10)
+    if (currentMinute < 10)
    {
     document.querySelector(".minute").innerHTML = "0" + d.getMinutes();
    }
