@@ -1,19 +1,25 @@
+<<<<<<< HEAD
 //TODO
 //setinterval för att få tiden att uppdateras.
 //create element i javascript istället för i html
 
 
 window.addEventListener( 'load', loadSite)
+=======
+window.addEventListener('load', loadSite)
+>>>>>>> 99ac4e3eaa484e99467465897297695fb8bb15b9
 
 function loadSite() {
 
     const d = new Date();
+    console.log(d)
     document.querySelector(".year").innerHTML = d.getFullYear();
 
     getMonthName();
 
     document.querySelector(".day").innerHTML = d.getDate();
 
+<<<<<<< HEAD
     getTwoDigitsHour();
 
     getTwoDigitsMinute();
@@ -80,8 +86,26 @@ else
     document.querySelector(".minute").innerHTML = d.getMinutes();
    }
 } 
+=======
+   
 
+    //change 0-6 to Monday-Sunday
+    document.querySelector(".weekday").innerHTML = d.getDay();
+>>>>>>> 99ac4e3eaa484e99467465897297695fb8bb15b9
 
+    setInterval(getTime, 10000)
+
+}
+
+function getTime() {
+    const d = new Date();
+ //change 0-9 to 00-09
+ document.querySelector(".hour").innerHTML = d.getHours() + " :";
+
+ //change 0-9 to 00-09
+ document.querySelector(".minute").innerHTML = d.getMinutes() + " :";
+
+<<<<<<< HEAD
 /**
  * changes 0-6 to monday-sunday
  */
@@ -99,3 +123,8 @@ function getWeekdayName() {
     const n = weekday[d.getDay()];
     document.querySelector(".weekday").innerHTML = n;
   }
+=======
+ //change 0-9 to 00-09
+ document.querySelector(".second").innerHTML = d.getSeconds();
+}
+>>>>>>> 99ac4e3eaa484e99467465897297695fb8bb15b9
