@@ -1,12 +1,8 @@
 
 
 function loadPage() {
-
-    getMonthName()
-
+     getMonthName()
 }
-
-
 
 
 
@@ -22,7 +18,9 @@ let dayInWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).g
 
 console.log(dayInWeek)
 
-
+/**
+ * Gives the correct day on first day of month
+ */
 for (let i = 1; i < dayInWeek; i++) {
     let dateBox = document.createElement("div")
     
@@ -32,6 +30,9 @@ for (let i = 1; i < dayInWeek; i++) {
 
 }
 
+/**
+ * Creates divs to print out all days in month in
+ */
 for (let i = 1; i <= numberOfDaysInMonth; i++) {
     let dateBox = document.createElement("div")
     dateBox.innerText = i
@@ -43,7 +44,9 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
 
 
 
-
+/**
+ * Writes month name in h2 title instead of just a number
+ */
 function getMonthName() {
     console.log('hej')
     const d = new Date();
