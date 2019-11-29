@@ -12,14 +12,18 @@ function loadPage() {
 
 const currentDate = new Date()
 document.getElementById("calendar").innerHTML = currentDate.getMonth() + 1;
-let numberOfDaysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate()
+let numberOfDaysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()
 
 console.log(numberOfDaysInMonth)
 
 let dateContainer = document.getElementById("dateContainer")
-let dayInWeek = new Date(currentDate.getFullYear(), 0 + 1, 1).getDay()
+let dayInWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay()
 
-for (let i = 0; i <= dayInWeek; i++) {
+
+console.log(dayInWeek)
+
+
+for (let i = 1; i < dayInWeek; i++) {
     let dateBox = document.createElement("div")
     
     dateBox.classlist = 'days'
@@ -57,7 +61,7 @@ function getMonthName() {
     month[10] = "November";
     month[11] = "December";
     
-    const n = month[d.getMonth() + 1];
+    const n = month[d.getMonth()];
     document.getElementById("calendar").innerText = n;
     }
 
