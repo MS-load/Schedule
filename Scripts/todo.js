@@ -4,6 +4,7 @@
 $(document).ready(function () {
     addEventListener()
     restoreTaskList()
+    removeTask()
 })
 
 
@@ -20,14 +21,12 @@ function restoreTaskList() {
         let restoreList = JSON.parse(data)
         console.log(restoreList)
         for (var i = 0; i < (restoreList.length); i++) {
-            $("ul").append("<li>" + restoreList[i] + "</li>")
+            $("ul").append("<li><input type='checkbox'>" + restoreList[i] + "</li>")
         }
     } else {
         restoreList = []
     }
 }
-
-
 
 function getTask() {
 
@@ -45,28 +44,25 @@ function getTask() {
     showTask(task, taskDate, taskTime)
 
     const listOfTasks = []
-    $("ul li").each(function () { listOfTasks.push($(this).text()) })
+    
+    $("form").each(function () { listOfTasks.push(taskItemsObj) })
 
     console.log(listOfTasks)
     saveTaskToLS("task-details", listOfTasks)
 
     $(":text").val("")
-
-
-
 }
 
 function showTask(task, taskDate, taskTime) {
     $("ul").append("<li><input type='checkbox'> " + task + "<br/> time:" + taskTime + "<br/> date:" + taskDate + " </li>")
 }
 
-function addCheckbox() {
-
-}
-
-
 function removeTask() {
-    getTaskFromLS()
+    $('input[type="checkbox"]').click(function(){
+        if($(this).prop("checked") == true){
+         console.log("test")   
+        }
+    })
 }
 
 
