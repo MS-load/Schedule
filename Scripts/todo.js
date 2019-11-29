@@ -25,9 +25,10 @@ $(document).ready(function () {
 //     }
 // }
 
-function getDefaultValues(){
+function getDefaultValues() {
     $("#taskTime").val("00:00")
-    $("#taskDate").val()
+    const today = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDate()
+    $("#taskDate").val(today)
 }
 
 function getTask() {
@@ -38,22 +39,22 @@ function getTask() {
     $(taskItemsArray).each(function (i, field) {
         taskItemsObj[field.name] = field.value
     })
-    
+
     getTaskFromLS('task-details', taskItemsObj)
-    
+
     $(":text").val("")
 
-    
+
 
     return false
 }
 
 function getTaskFromLS(key, value) {
     let listOfTasks = JSON.parse(localStorage.getItem(key)) || []
-    
+
     listOfTasks.push(value)
     console.log(JSON.parse(localStorage.getItem(key)))
-    saveTaskToLS('task-details',listOfTasks)
+    saveTaskToLS('task-details', listOfTasks)
     console.log(listOfTasks)
 }
 
