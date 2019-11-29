@@ -48,7 +48,6 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
  * Writes month name in h2 title instead of just a number
  */
 function getMonthName() {
-    console.log('hej')
     const d = new Date();
     const month = new Array(11);
     month[0] = "January";
