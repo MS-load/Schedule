@@ -1,7 +1,7 @@
 
 
 function loadPage() {
-     getMonthName()
+    getMonthName()
 }
 
 
@@ -23,10 +23,10 @@ console.log(dayInWeek)
  */
 for (let i = 1; i < dayInWeek; i++) {
     let dateBox = document.createElement("div")
-    
+
     dateBox.classlist = 'days'
     dateContainer.appendChild(dateBox)
- 
+
 
 }
 
@@ -38,7 +38,7 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
     dateBox.innerText = i
     dateContainer.appendChild(dateBox)
 
- 
+
 
 }
 
@@ -62,10 +62,10 @@ function getMonthName() {
     month[9] = "October";
     month[10] = "November";
     month[11] = "December";
-    
+
     const n = month[d.getMonth()];
     document.getElementById("calendar").innerText = n;
-    }
+}
 
-    loadPage()
+loadPage()
 

@@ -2,30 +2,32 @@
 
 
 $(document).ready(function () {
-    //addEventListener()
-    restoreTaskList()
-    removeTask()
+    //restoreTaskList()
+    //removeTask()
+    $("form").on("submit", getTask)
+    getDefaultValues()
 })
 
-
-/* function addEventListener() {
-    $(":submit").click(getTask)
-} */
 
 /**
  * Restores the existing task list from Local Storage
  */
-function restoreTaskList() {
-    let data = localStorage.getItem("task-details") // how to store as on object
-    if (data) {
-        let restoreList = JSON.parse(data)
-        console.log(restoreList)
-        for (var i = 0; i < (restoreList.length); i++) {
-            $("ul").append("<li><input type='checkbox'>" + restoreList[i] + "</li>")
-        }
-    } else {
-        restoreList = []
-    }
+// function restoreTaskList() {
+//     let data = localStorage.getItem("task-details") // how to store as on object
+//     if (data) {
+//         let restoreList = JSON.parse(data)
+//         console.log(restoreList)
+//         for (var i = 0; i < (restoreList.length); i++) {
+//             $("ul").append("<li><input type='checkbox'>" + restoreList[i] + "</li>")
+//         }
+//     } else {
+//         restoreList = []
+//     }
+// }
+
+function getDefaultValues(){
+    $("#taskTime").val("00:00")
+    $("#taskDate").val()
 }
 
 function getTask() {
@@ -36,33 +38,27 @@ function getTask() {
     $(taskItemsArray).each(function (i, field) {
         taskItemsObj[field.name] = field.value
     })
-
-    const task = taskItemsObj.text
-    const taskDate = taskItemsObj.date
-    const taskTime = taskItemsObj.time
-
-    showTask(task, taskDate, taskTime)
-
-    let listOfTasks = JSON.parse(localStorage.getItem('task-details'))
-
-    if(!listOfTasks) {
-        listOfTasks = []
-    }
-
-    listOfTasks.push(taskItemsObj)
-
-    localStorage.setItem('task-details', JSON.stringify(listOfTasks))
-
-    console.log(JSON.parse(localStorage.getItem('task-details')))
-
-
-
-    //$("ul li").each(function () { listOfTasks.push($(this).text()) })
-
-    console.log(listOfTasks)
-    //saveTaskToLS("task-details", listOfTasks)
-
+    
+    getTaskFromLS('task-details', taskItemsObj)
+    
     $(":text").val("")
+
+    
+
+    return false
+}
+
+function getTaskFromLS(key, value) {
+    let listOfTasks = JSON.parse(localStorage.getItem(key)) || []
+    
+    listOfTasks.push(value)
+    console.log(JSON.parse(localStorage.getItem(key)))
+    saveTaskToLS('task-details',listOfTasks)
+    console.log(listOfTasks)
+}
+
+function saveTaskToLS(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
 }
 
 function showTask(task, taskDate, taskTime) {
@@ -78,13 +74,7 @@ function removeTask() {
 }
 
 
-function saveTaskToLS(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
-}
 
-function getTaskFromLS(key) {
-    return console.log(JSON.parse(localStorage.getItem(key)) || [])
-}
 
 function clearTaskFromLS() {
     localStorage.clear()
