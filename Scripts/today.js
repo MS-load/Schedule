@@ -14,12 +14,10 @@ function loadSite() {
 
     document.querySelector(".day").innerHTML = d.getDate();
 
-    //change 0-9 to 00-09
-    document.querySelector(".hour").innerHTML = d.getHours() +" :";
+    getTwoDigitsHour();
 
-    //change 0-9 to 00-09
-    document.querySelector(".minute").innerHTML = d.getMinutes();
-
+    getTwoDigitsMinute();
+    
     getWeekdayName();
 }
 
@@ -46,6 +44,42 @@ function getMonthName() {
     const n = month[d.getMonth()];
     document.querySelector(".month").innerHTML = n;
   }
+
+/**
+ * Add a 0 before hour 0-9
+ * 
+ *  */ 
+function getTwoDigitsHour() {
+    const d = new Date();
+    const currentTime = d.getHours();
+    
+    if (currentTime < 10)
+   {
+    document.querySelector(".hour").innerHTML = "0" + d.getHours() +" :";
+   }
+else
+   {
+    document.querySelector(".hour").innerHTML = d.getHours() +" :";
+   }
+} 
+
+/**
+ * Add a 0 before minute 0-9
+ * 
+ *  */ 
+function getTwoDigitsMinute() {
+    const d = new Date();
+    const currentTime = d.getMinutes();
+    
+    if (currentTime < 10)
+   {
+    document.querySelector(".minute").innerHTML = "0" + d.getMinutes();
+   }
+else
+   {
+    document.querySelector(".minute").innerHTML = d.getMinutes();
+   }
+} 
 
 
 /**
