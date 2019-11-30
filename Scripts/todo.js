@@ -4,31 +4,16 @@
 $(document).ready(function () {
     //restoreTaskList()
     //removeTask()
-    $("form").on("submit", getTask)
     getDefaultValues()
+    $("form").on("submit", getTask)
+
 })
 
-
-/**
- * Restores the existing task list from Local Storage
- */
-// function restoreTaskList() {
-//     let data = localStorage.getItem("task-details") // how to store as on object
-//     if (data) {
-//         let restoreList = JSON.parse(data)
-//         console.log(restoreList)
-//         for (var i = 0; i < (restoreList.length); i++) {
-//             $("ul").append("<li><input type='checkbox'>" + restoreList[i] + "</li>")
-//         }
-//     } else {
-//         restoreList = []
-//     }
-// }
-
 function getDefaultValues() {
-    $("#taskTime").val("00:00")
+    $("input[type=time]").val("00:00")
     const today = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDate()
-    $("#taskDate").val(today)
+    $("input[type=date]").val(today)
+    $(":text").val("Add task")
 }
 
 function getTask() {
@@ -44,8 +29,6 @@ function getTask() {
 
     $(":text").val("")
 
-
-
     return false
 }
 
@@ -53,17 +36,28 @@ function getTaskFromLS(key, value) {
     let listOfTasks = JSON.parse(localStorage.getItem(key)) || []
 
     listOfTasks.push(value)
-    console.log(JSON.parse(localStorage.getItem(key)))
-    saveTaskToLS('task-details', listOfTasks)
     console.log(listOfTasks)
+    saveTaskToLS('task-details', listOfTasks)
+    showTask(listOfTasks)
 }
 
 function saveTaskToLS(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
-function showTask(task, taskDate, taskTime) {
-    $("ul").append("<li><input type='checkbox'> " + task + "<br/> time:" + taskTime + "<br/> date:" + taskDate + " </li>")
+function showTask(listOfTasks) {
+    const taskText = listOfTasks[listOfTasks.length-1].text
+    const taskTime = listOfTasks[listOfTasks.length-1].time
+    const taskDate = listOfTasks[listOfTasks.length-1].date
+    $("ul").append("<li>" + taskText+" <br/> time: " + taskTime + " <br/> date: "+taskDate+"</li>")
+    
+    
+    addScrollToList()
+
+}
+
+function addScrollToList() {
+    $("ul").scrollTop($("ul")[0].scrollHeight)
 }
 
 function removeTask() {

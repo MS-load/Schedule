@@ -17,7 +17,7 @@ header {
     background: #00203FFF;
     color: #ADEFD1FF;
     text-align: center;
-    flex-grow: 0.5;
+    flex-grow: 0.25;
 }
 
 main {
@@ -88,10 +88,18 @@ ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    height: 15rem;
+    overflow : auto;
 }
 
+li {
+    border-bottom: 1px solid #ADEFD1FF;
+}
 .calendar-container {
     background-color: rgb(243, 241, 241);
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 0.25fr 4fr;
+    grid-template-areas: "month""days""dates";
     flex-grow: 5;
     text-align: center;
     display: none;
@@ -141,9 +149,9 @@ ul {
     }
     .calendar-container {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.3fr 0.25fr 4fr;
-        grid-template-areas: "month""days""dates";
+    }
+    ul {
+        height: 10rem;
     }
 }
 
