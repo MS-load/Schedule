@@ -46,13 +46,15 @@ function saveTaskToLS(key, value) {
 }
 
 function showTask(listOfTasks) {
-    const taskText = listOfTasks[listOfTasks.length-1].text
-    const taskTime = listOfTasks[listOfTasks.length-1].time
-    const taskDate = listOfTasks[listOfTasks.length-1].date
-    $("ul").append("<li>" + taskText+" <br/> time: " + taskTime + " <br/> date: "+taskDate+"</li>")
-    
-    
-    addScrollToList()
+    const taskText = listOfTasks[listOfTasks.length - 1].text
+    const taskTime = listOfTasks[listOfTasks.length - 1].time
+    const taskDate = listOfTasks[listOfTasks.length - 1].date
+    const trash = "<i class='material-icons'>delete</i>"
+    $("ul").append(
+        "<li><div><p>" + taskText + "</p>"+ trash +"</div><div><p> time: " +
+        taskTime + "</p><p> date: " + taskDate + "</p></div></li >")
+
+        addScrollToList()
 
 }
 

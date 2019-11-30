@@ -14,8 +14,8 @@ body {
 
 header {
     border: 1px solid black;
-    background: #00203FFF;
-    color: #ADEFD1FF;
+    background: rgba(0, 32, 63, 1.00);
+    color: rgba(173, 239, 209, 1.00);
     text-align: center;
     flex-grow: 0.25;
 }
@@ -36,8 +36,8 @@ main {
 
 .today {
     grid-area: today;
-    color: #00203FFF;
-    background: #ADEFD1FF;
+    color: rgba(0, 32, 63, 1.00);
+    background: rgba(173, 239, 209, 1.00);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,8 +49,8 @@ main {
 
 .todo {
     grid-area: task;
-    background: #00203FFF;
-    color: #ADEFD1FF;
+    background: rgba(0, 32, 63, 1.00);
+    color: rgba(173, 239, 209, 1.00);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -79,9 +79,9 @@ input[type=text] {
 }
 
 input {
-    background-color: #ADEFD1FF;
+    background-color: rgba(173, 239, 209, 1.00);
     border: none;
-    color: #00203FFF;
+    color: rgba(0, 32, 63, 1.00);
 }
 
 ul {
@@ -89,12 +89,27 @@ ul {
     padding: 0;
     margin: 0;
     height: 15rem;
-    overflow : auto;
+    overflow: auto;
 }
 
 li {
-    border-bottom: 1px solid #ADEFD1FF;
+    border-bottom: 1px outset rgba(173, 239, 209, 0.5);
+    padding:0.25rem;
 }
+
+li>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+
+li div>p {
+    align-content: center;
+    margin:0;
+}
+
 .calendar-container {
     background-color: rgb(243, 241, 241);
     grid-template-columns: 1fr;
@@ -108,7 +123,7 @@ li {
 
 .month-container {
     grid-area: month;
-    color: #00203FFF;
+    color: rgba(0, 32, 63, 1.00);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -117,13 +132,13 @@ li {
 }
 
 .weekday-container {
-    color: #00203FFF;
+    color: rgba(0, 32, 63, 1.00);
     grid-area: days;
     display: grid;
 }
 
 .date-container {
-    color: #00203FFF;
+    color: rgba(0, 32, 63, 1.00);
     grid-area: dates;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
