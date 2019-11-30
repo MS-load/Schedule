@@ -1,8 +1,15 @@
+html {
+    font-size: 1rem;
+    font-family: 'PT Serif', sans-serif;
+}
+
 body {
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr;
 }
 
 header {
@@ -10,7 +17,7 @@ header {
     background: #00203FFF;
     color: #ADEFD1FF;
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 0.5;
 }
 
 main {
@@ -19,25 +26,29 @@ main {
 }
 
 .left {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    flex-grow: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 8fr;
+    grid-template-areas: "today""task";
+    border-right: 1px solid grey;
 }
 
 .today {
+    grid-area: today;
     color: #00203FFF;
     background: #ADEFD1FF;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 20%;
 }
 
-.today > p {
-    margin: 0.3rem 0 0 0; 
+.today>p {
+    margin: 0.3rem 0 0 0;
 }
 
 .todo {
+    grid-area: task;
     background: #00203FFF;
     color: #ADEFD1FF;
     display: flex;
@@ -45,7 +56,6 @@ main {
     justify-content: space-between;
     align-content: center;
     padding: 1rem;
-    height: 80%;
 }
 
 form {
@@ -56,6 +66,24 @@ form {
     align-content: center;
 }
 
+input[type=submit] {
+    padding: 0.25rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 5rem;
+}
+
+input[type=text] {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+}
+
+input {
+    background-color: #ADEFD1FF;
+    border: none;
+    color: #00203FFF;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -64,43 +92,45 @@ ul {
 
 .calendar-container {
     background-color: rgb(243, 241, 241);
-    flex-grow: 20;
-    height: 100%;
-    min-height: 80vh;
+    flex-grow: 5;
     text-align: center;
     display: none;
+    padding: 0.5rem;
 }
 
 .month-container {
+    grid-area: month;
+    color: #00203FFF;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0;
+    padding: 0;
 }
 
 .weekday-container {
+    color: #00203FFF;
+    grid-area: days;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .date-container {
+    color: #00203FFF;
+    grid-area: dates;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    height: 100%;
+    grid-template-columns: repeat(7, 1fr);
 }
-
 
 .date-container div {
     border: 1px solid grey;
     background-color: white;
     padding: 0.5rem;
-    font-size: 15pt;
-    height: 4rem;
     text-align: left;
 }
 
 .weekdays-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(7, 1fr);
 }
 
 /*Responsive Design*/
@@ -110,7 +140,10 @@ ul {
         font-size: 1.2rem;
     }
     .calendar-container {
-        display: block;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 0.25fr 4fr;
+        grid-template-areas: "month""days""dates";
     }
 }
 
