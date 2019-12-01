@@ -3,7 +3,6 @@
 
 $(document).ready(function () {
     restoreTaskList()
-    //removeTask()
     getDefaultValues()
     $("form").on("submit", getTask)
 
@@ -69,10 +68,11 @@ function showTask(arrayPassed) {
         const taskDate = arrayPassed[i].date
         const taskNumber = arrayPassed[i].number
 
+        const edit = "<i class='material-icons edit" + taskNumber + "'>edit</i>"
         const trash = "<i class='" + taskNumber + " material-icons'>delete</i>"
 
         $("ul").append(
-            "<li><div><p>" + taskText + "</p>" + trash + "</div><div><p> time: " +
+            "<li><div><p>" + taskText + "</p><p>" + edit + trash + "</p></div><div><p> time: " +
             taskTime + "</p><p> date: " + taskDate + "</p></div></li >")
 
         addScrollToList()
@@ -81,15 +81,37 @@ function showTask(arrayPassed) {
             removeTaskFromLS(taskNumber)
             removeTask()
         })
+
+        $(".edit" + taskNumber).click(function () {
+            editItem(taskNumber,arrayPassed)
+
+        })
     }
 }
+
+function editItem(taskNumber,arrayPassed) {
+    const taskText = arrayPassed[taskNumber].text
+    const taskTime = arrayPassed[taskNumber].time
+    const taskDate = arrayPassed[taskNumber].date
+
+    $("input[type=time]").val(taskTime)
+    $("input[type=date]").val(taskDate)
+    $(":text").val(taskText)
+
+    removeTaskFromLS(taskNumber)
+    removeTask()
+
+}
+
+
+
 
 function addScrollToList() {
     $("ul").scrollTop($("ul")[0].scrollHeight)
 }
 
 function removeTask() {
-    $(event.target).parent().parent().remove()
+    $(event.target).parent().parent().parent().remove()
 }
 
 function removeTaskFromLS(taskNumber) {
