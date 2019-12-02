@@ -30,7 +30,7 @@ function getTimeNow() {
 
     const monthName = month[d.getMonth()]
 
-
+//TODO. change or use the => on the rest of the code
     setInterval(() => {
         d.setSeconds(d.getSeconds() + 1)
 
