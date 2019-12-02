@@ -1,16 +1,23 @@
+html {
+    font-size: 1rem;
+    font-family: 'PT Serif', sans-serif;
+}
+
 body {
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr;
 }
 
 header {
     border: 1px solid black;
-    background: #00203FFF;
-    color: #ADEFD1FF;
+    background: rgba(0, 32, 63, 1.00);
+    color: rgba(173, 239, 209, 1.00);
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 0.25;
 }
 
 main {
@@ -19,33 +26,36 @@ main {
 }
 
 .left {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    flex-grow: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 8fr;
+    grid-template-areas: "today""task";
+    border-right: 1px solid grey;
 }
 
 .today {
-    color: #00203FFF;
-    background: #ADEFD1FF;
+    grid-area: today;
+    color: rgba(0, 32, 63, 1.00);
+    background: rgba(173, 239, 209, 1.00);
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 20%;
 }
 
-.today > p {
-    margin: 0.3rem 0 0 0; 
+.today>p {
+    margin: 0.3rem 0 0 0;
 }
 
 .todo {
-    background: #00203FFF;
-    color: #ADEFD1FF;
+    grid-area: task;
+    background: rgba(0, 32, 63, 1.00);
+    color: rgba(173, 239, 209, 1.00);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
     padding: 1rem;
-    height: 80%;
 }
 
 form {
@@ -56,51 +66,104 @@ form {
     align-content: center;
 }
 
+input[type=submit] {
+    padding: 0.25rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 5rem;
+}
+
+input[type=text] {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+}
+
+input {
+    background-color: rgba(173, 239, 209, 1.00);
+    border: none;
+    color: rgba(0, 32, 63, 1.00);
+}
+
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    height: 15rem;
+    overflow: auto;
+}
+
+li {
+    border-bottom: 1px outset rgba(173, 239, 209, 0.5);
+    padding:0.25rem;
+}
+
+li>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+
+li div>p {
+    align-content: center;
+    margin:0;
 }
 
 .calendar-container {
     background-color: rgb(243, 241, 241);
-    flex-grow: 20;
-    height: 100%;
-    min-height: 80vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 0.25fr 4fr;
+    grid-template-areas: "month""days""dates";
+    flex-grow: 5;
     text-align: center;
     display: none;
+    padding: 0.5rem;
 }
 
 .month-container {
+    grid-area: month;
+    color: rgba(0, 32, 63, 1.00);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+.month-container h3 {
+    margin-top: 0;
 }
 
 .weekday-container {
+    color: rgba(0, 32, 63, 1.00);
+    grid-area: days;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .date-container {
+    color: rgba(0, 32, 63, 1.00);
+    grid-area: dates;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    height: 100%;
+    grid-template-columns: repeat(7, 1fr);
 }
-
 
 .date-container div {
     border: 1px solid grey;
     background-color: white;
     padding: 0.5rem;
-    font-size: 15pt;
-    height: 4rem;
     text-align: left;
+}
+
+.date-container div p {
+    margin:0;
+    text-align: right;
+    border: 0.5px solid grey;
+
 }
 
 .weekdays-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(7, 1fr);
 }
 
 /*Responsive Design*/
@@ -110,7 +173,10 @@ ul {
         font-size: 1.2rem;
     }
     .calendar-container {
-        display: block;
+        display: grid;
+    }
+    ul {
+        height: 10rem;
     }
 }
 

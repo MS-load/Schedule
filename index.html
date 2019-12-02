@@ -9,17 +9,25 @@
 
     <!-- STYLE SHEET -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<<<<<<< HEAD
     <script src="./Scripts/today.js"></script>
     <script src="./Scripts/calendar.js" defer></script>
     <script src="./Scripts/todo.js"></script>
     
+=======
+
+    <script src="./Scripts/today.js"></script>
+    <script src="./Scripts/calendar.js" defer></script>
+    <script src="./Scripts/todo.js"></script>
+>>>>>>> 665d7349ad3584e23cae53585107a16a90a1fe13
 
     <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -36,17 +44,17 @@
                 <p class="date"></p>
                 <p class="weekday"></p>
                 <p class="time"></p>
-        </div>
+            </div>
 
             <!-- TASKS -->
             <div class="todo">
                 <ul>
                     <!-- Task populated from JavaScript -->
                 </ul>
-                <form action="" method="get">
-                    <input type="text" name="text" id="text" placeholder="add task" required>
-                    <input type="time" name="time" id="taskTime">
-                    <input type="date" name="date" id="taskDate" required>
+                <form>
+                    <input type="text" name="text" required>
+                    <input type="time" name="time">
+                    <input type="date" name="date" id="Date1"required>
                     <input type="submit" value="Add task">
                 </form>
             </div>
@@ -55,20 +63,20 @@
         <!-- CALENDAR -->
         <div class="calendar-container">
             <div class="month-container">
-            <button>Previous</button>
-            <h2 id="calendar" class="calendar"></h2>
-            <button>Next</button>
+                <button>Previous</button>
+                <h3 id="calendar" class="calendar"></h3>
+                <button>Next</button>
             </div>
             <div class="weekdays-container">
-            <div class="constantWeekdays">MONDAY</div>
-            <div class="constantWeekdays">TUESDAY</div>
-            <div class="constantWeekdays">WEDNESDAY</div>
-            <div class="constantWeekdays">THURSDAY</div>
-            <div class="constantWeekdays">FRIDAY</div>
-            <div class="constantWeekdays">SATURDAY</div>
-            <div class="constantWeekdays">SUNDAY</div>
+                <div class="constantWeekdays">Monday</div>
+                <div class="constantWeekdays">Tuesday</div>
+                <div class="constantWeekdays">Wednesday</div>
+                <div class="constantWeekdays">Thursday</div>
+                <div class="constantWeekdays">Friday</div>
+                <div class="constantWeekdays">Saturday</div>
+                <div class="constantWeekdays">Sunday</div>
             </div>
-            
+
             <div id="dateContainer" class="date-container">
             </div>
         </div>
