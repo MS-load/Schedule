@@ -24,6 +24,7 @@ console.log(dayInWeek)
  * Gives the correct day on first day of month
  */
 for (i = 0; i < dayInWeek; i++) {
+    console.log(i)
     let empty = document.createElement('div')
     empty.innerText = " "
     dateContainer.appendChild(empty)

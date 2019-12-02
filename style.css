@@ -179,9 +179,3 @@ li div>p {
         height: 10rem;
     }
 }
-
-@media (min-width: 992px) {
-    html {
-        font-size: 1.4rem;
-    }
-}
