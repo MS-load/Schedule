@@ -1,5 +1,9 @@
 window.addEventListener('load', loadPage)
 
+/**
+ * 
+ * Runs on page load
+ */
 function loadPage() {
     const dateContainer = document.getElementById("dateContainer")
     const d = new Date()
@@ -9,7 +13,11 @@ function loadPage() {
 
 }
 
-
+/**
+ * Makes the calender start on correct weekday
+ * @param {HTMLDivElement} dateContainer 
+ * @param {String} d is the date required
+ */
 function getCorrectFirstDay(dateContainer, d) {
     const dayInWeek = new Date(d.getFullYear(), d.getMonth(), 0).getDay()
     console.log(dayInWeek)
@@ -20,12 +28,14 @@ function getCorrectFirstDay(dateContainer, d) {
         let emptyBox = document.createElement("div")
         emptyBox.innerText = " "
         dateContainer.appendChild(emptyBox)
-
-
     }
-
 }
 
+/**
+ * Populate the dates
+ * @param {HTMLDivElement} dateContainer
+ * @param {String} d is the date required
+ */
 function getNrOfDaysInMonth(dateContainer, d) {
     const numberOfDaysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
     console.log(numberOfDaysInMonth)
@@ -42,7 +52,8 @@ function getNrOfDaysInMonth(dateContainer, d) {
 }
 
 /**
- * Writes month name in h2 title instead of just a number
+ * Gets the month name
+ * @param {String} d is the date required
  */
 function getMonthName(d) {
     const month = ["January", "February", "March", "April", "May", "June", "July",
