@@ -158,8 +158,11 @@ function removeTaskFromLS(taskNumber) {
 }
 
 //WIP
-function getTaskCountPerDay() {
+function getTaskCountPerDay(modifiedArray) {
+    let d = newDate()
+    console.log(modifiedArray)
 
+    //for(i=0; i<)
     // taskCount = document.createElement("p")
     // taskCount.innerHTML = getTaskCountPerDay()
     // dateBox.appendChild(taskCount)
