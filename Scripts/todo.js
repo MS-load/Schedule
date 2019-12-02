@@ -50,7 +50,7 @@ function getTask() {
     showTask(savedArray)
 
     $(":text").val("")
-
+    
     return false
 }
 
@@ -158,11 +158,19 @@ function removeTaskFromLS(taskNumber) {
 }
 
 //WIP
-function getTaskCountPerDay(modifiedArray) {
-    let d = newDate()
-    console.log(modifiedArray)
-
-    //for(i=0; i<)
+getTaskCountPerDay()
+function getTaskCountPerDay() {
+    let d = "2019-12-02"
+    let arrayToCheck = JSON.parse(localStorage.getItem('task-details'))
+    console.log(arrayToCheck)
+   
+    let numberOfTasks = 0
+    for (let i = 0; i < arrayToCheck.length; i++) {
+        if (d == arrayToCheck[i].date) {
+            numberOfTasks++
+            console.log("number=" + numberOfTasks)
+        }
+    }
     // taskCount = document.createElement("p")
     // taskCount.innerHTML = getTaskCountPerDay()
     // dateBox.appendChild(taskCount)
