@@ -127,8 +127,7 @@ li div>p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0;
-    padding: 0;
+
 }
 .month-container h3 {
     margin-top: 0;
@@ -140,21 +139,21 @@ li div>p {
     display: grid;
 }
 
-.date-container {
+#dateContainer {
     color: rgba(0, 32, 63, 1.00);
     grid-area: dates;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
 
-.date-container div {
+#dateContainer div {
     border: 1px solid grey;
     background-color: white;
     padding: 0.5rem;
     text-align: left;
 }
 
-.date-container div p {
+#dateContainer div p {
     margin:0;
     text-align: right;
     border: 0.5px solid grey;
