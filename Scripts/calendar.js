@@ -15,7 +15,7 @@ const numberOfDaysInMonth = new Date(currentDate.getFullYear(), currentDate.getM
 console.log(numberOfDaysInMonth)
 
 const dateContainer = document.getElementById("dateContainer")
-const dayInWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay()
+const dayInWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDay()
 
 
 console.log(dayInWeek)
@@ -23,17 +23,14 @@ console.log(dayInWeek)
 /**
  * Gives the correct day on first day of month
  */
-for (let i = 1; i < dayInWeek; i++) {
-    let dateBox = document.createElement("div")
-
-    dateBox.classlist = 'days'
-    dateContainer.appendChild(dateBox)
-
-
+for (i = 0; i < dayInWeek; i++) {
+    let empty = document.createElement('div')
+    empty.innerText = " "
+    dateContainer.appendChild(empty)
 }
 
 /**
- * Creates divs to print out all days in month in
+ * Creates div to print out all days in month in
  */
 for (let i = 1; i <= numberOfDaysInMonth; i++) {
     let dateBox = document.createElement("div")
@@ -49,7 +46,7 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
 function getMonthName() {
     const d = new Date()
     const month = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"]
+        "August", "September", "October", "November", "December"]
 
     const n = month[d.getMonth()]
     document.getElementById("calendar").innerText = n
