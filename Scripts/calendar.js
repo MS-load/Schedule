@@ -7,13 +7,15 @@ function loadPage() {
 
 
 const currentDate = new Date()
-document.getElementById("calendar").innerHTML = currentDate.getMonth() + 1;
-let numberOfDaysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()
+
+document.getElementById("calendar").innerHTML = currentDate.getMonth() + 1
+
+const numberOfDaysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()
 
 console.log(numberOfDaysInMonth)
 
-let dateContainer = document.getElementById("dateContainer")
-let dayInWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay()
+const dateContainer = document.getElementById("dateContainer")
+const dayInWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay()
 
 
 console.log(dayInWeek)
@@ -38,8 +40,9 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
     dateBox.innerText = i
     dateContainer.appendChild(dateBox)
 
-
-
+    // taskCount = document.createElement("p")
+    // taskCount.innerHTML = getTaskCountPerDay()
+    // dateBox.appendChild(taskCount)
 }
 
 
@@ -48,13 +51,14 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
  * Writes month name in h2 title instead of just a number
  */
 function getMonthName() {
-    const d = new Date();
+    const d = new Date()
     const month = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"]
 
-    const n = month[d.getMonth()];
-    document.getElementById("calendar").innerText = n;
+    const n = month[d.getMonth()]
+    document.getElementById("calendar").innerText = n
 }
+
 
 loadPage()
 

@@ -1,13 +1,10 @@
 
-
-
 $(document).ready(function () {
     restoreTaskList()
     getDefaultValues()
     $("form").on("submit", getTask)
 
 })
-
 
 function restoreTaskList() {
     let OldArray = JSON.parse(localStorage.getItem('task-details'))
@@ -52,7 +49,6 @@ function getTaskFromLS(key, value) {
     value.number = (taskItemsArray.length - 1)
 
     return taskItemsArray
-
 }
 
 
@@ -83,13 +79,12 @@ function showTask(arrayPassed) {
         })
 
         $(".edit" + taskNumber).click(function () {
-            editItem(taskNumber,arrayPassed)
-
+            editItem(taskNumber, arrayPassed)
         })
     }
 }
 
-function editItem(taskNumber,arrayPassed) {
+function editItem(taskNumber, arrayPassed) {
     const taskText = arrayPassed[taskNumber].text
     const taskTime = arrayPassed[taskNumber].time
     const taskDate = arrayPassed[taskNumber].date
@@ -100,11 +95,7 @@ function editItem(taskNumber,arrayPassed) {
 
     removeTaskFromLS(taskNumber)
     removeTask()
-
 }
-
-
-
 
 function addScrollToList() {
     $("ul").scrollTop($("ul")[0].scrollHeight)
@@ -126,7 +117,17 @@ function removeTaskFromLS(taskNumber) {
     saveTaskToLS('task-details', modifiedArray)
 }
 
-function clearTaskFromLS() {
-    localStorage.clear()
+
+function getTaskCountPerDay() {
+    return 100
+
 }
+
+
+
+
+
+
+
+
 
