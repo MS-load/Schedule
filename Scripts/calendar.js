@@ -60,6 +60,6 @@ function getMonthName(d) {
         "August", "September", "October", "November", "December"]
 
     const monthName = month[d.getMonth()]
-    document.getElementById("calendar").innerText = monthName
+    document.getElementById("calendar").innerText = monthName + ' ' + d.getFullYear()
 }
 

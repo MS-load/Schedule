@@ -127,8 +127,7 @@ li div>p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0;
-    padding: 0;
+
 }
 .month-container h3 {
     margin-top: 0;
