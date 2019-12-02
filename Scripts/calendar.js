@@ -1,7 +1,6 @@
 window.addEventListener('load', loadPage)
 
 /**
- * 
  * Runs on page load
  */
 function loadPage() {
@@ -10,7 +9,6 @@ function loadPage() {
     getMonthName(d)
     getCorrectFirstDay(dateContainer, d)
     getNrOfDaysInMonth(dateContainer, d)
-
 }
 
 /**
@@ -20,13 +18,9 @@ function loadPage() {
  */
 function getCorrectFirstDay(dateContainer, d) {
     const dayInWeek = new Date(d.getFullYear(), d.getMonth(), 0).getDay()
-    console.log(dayInWeek)
-    /**
-     * Gives the correct day on first day of month
-     */
+
     for (let i = 0; i < dayInWeek; i++) {
         let emptyBox = document.createElement("div")
-        emptyBox.innerText = " "
         dateContainer.appendChild(emptyBox)
     }
 }
@@ -38,18 +32,22 @@ function getCorrectFirstDay(dateContainer, d) {
  */
 function getNrOfDaysInMonth(dateContainer, d) {
     const numberOfDaysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
-    console.log(numberOfDaysInMonth)
+    const month = (d.getMonth() + 1)
+    const year = (d.getFullYear()) 
 
-    /**
-     * Creates divs to print out all days in month in
-     */
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
         let dateBox = document.createElement("div")
+        dateBox.className = "Date"
         dateBox.innerText = i
         dateContainer.appendChild(dateBox)
-        // taskCount = document.createElement("p")
-        // taskCount.innerHTML = getTaskCountPerDay()
-        // dateBox.appendChild(taskCount)
+        TaskCount = document.createElement("p")
+        dateBox.appendChild(TaskCount)
+
+        let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
+        TaskCount.innerText = getTaskCountPerDay(searchTaskDate)
+        
+        console.log(typeof searchTaskDate)
+
     }
 }
 
@@ -63,5 +61,10 @@ function getMonthName(d) {
 
     const monthName = month[d.getMonth()]
     document.getElementById("calendar").innerText = monthName + ' ' + d.getFullYear()
+
+
 }
 
+function displayedMonth() {
+
+}

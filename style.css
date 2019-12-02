@@ -156,8 +156,6 @@ li div>p {
 #dateContainer div p {
     margin:0;
     text-align: right;
-    border: 0.5px solid grey;
-
 }
 
 .weekdays-container {

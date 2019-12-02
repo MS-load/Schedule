@@ -2,20 +2,19 @@
  * On load
  */
 $(document).ready(function () {
-    getOldTaskList()
-    getDefaultValues()
+    renderOldTaskList()
+    renderDefaultValues()
     $("form").on("submit", getTask)
-
 })
 
 /**
- *Gets the already saved tasks from the local storage
+ *Renders the already saved tasks from the local storage
  */
-function getOldTaskList() {
+function renderOldTaskList() {
     let OldArray = JSON.parse(localStorage.getItem('task-details'))
-    console.log(OldArray)
+    //console.log(OldArray)
     if (OldArray !== null) {
-        showTask(OldArray)
+        renderTask(OldArray)
     } else {
         OldArray = []
     }
@@ -24,7 +23,7 @@ function getOldTaskList() {
 /**
  * Gets the default value for the form
  */
-function getDefaultValues() {
+function renderDefaultValues() {
     $("input[type=time]").val("00:00")
     let today = new Date().toISOString().substr(0, 10)
     $("input[type=date]").val(today)
@@ -47,10 +46,12 @@ function getTask() {
 
     saveTaskToLS('task-details', savedArray)
 
-    showTask(savedArray)
+    renderTask(savedArray)
+
+    getNrOfDaysInMonth(dateContainer, d)
 
     $(":text").val("")
-    
+
     return false
 }
 
@@ -81,7 +82,7 @@ function saveTaskToLS(key, value) {
  * Displays task on DOM
  * @param {Array} arrayPassed the array to be displayed
  */
-function showTask(arrayPassed) {
+function renderTask(arrayPassed) {
     $("ul").empty()
     for (i = 0; i < arrayPassed.length; i++) {
         const taskText = arrayPassed[i].text
@@ -157,23 +158,19 @@ function removeTaskFromLS(taskNumber) {
     saveTaskToLS('task-details', modifiedArray)
 }
 
-//WIP
-getTaskCountPerDay()
-function getTaskCountPerDay() {
-    let d = "2019-12-02"
-    let arrayToCheck = JSON.parse(localStorage.getItem('task-details'))
-    console.log(arrayToCheck)
-   
+function getTaskCountPerDay(searchTaskDate) {
+
+    let arrayToCheck = JSON.parse(localStorage.getItem('task-details')) || []
+    
     let numberOfTasks = 0
+
     for (let i = 0; i < arrayToCheck.length; i++) {
-        if (d == arrayToCheck[i].date) {
+        if (searchTaskDate == arrayToCheck[i].date) {
             numberOfTasks++
-            console.log("number=" + numberOfTasks)
         }
     }
-    // taskCount = document.createElement("p")
-    // taskCount.innerHTML = getTaskCountPerDay()
-    // dateBox.appendChild(taskCount)
+
+    return numberOfTasks
 }
 
 //get the current number displayed
