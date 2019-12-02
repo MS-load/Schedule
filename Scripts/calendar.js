@@ -7,7 +7,7 @@ window.addEventListener('load', loadPage)
 function loadPage() {
     const dateContainer = document.getElementById("dateContainer")
     const d = new Date()
-    getMonthName(d)
+    updateMonthName(d)
     getCorrectFirstDay(dateContainer, d)
     getNrOfDaysInMonth(dateContainer, d)
 
@@ -55,11 +55,8 @@ function getNrOfDaysInMonth(dateContainer, d) {
  * Gets the month name
  * @param {String} d is the date required
  */
-function getMonthName(d) {
-    const month = ["January", "February", "March", "April", "May", "June", "July",
-        "August", "September", "October", "November", "December"]
-
-    const monthName = month[d.getMonth()]
+function updateMonthName(d) {
+    const monthName = getMonthName(d)
     document.getElementById("calendar").innerText = monthName + ' ' + d.getFullYear()
 }
 
