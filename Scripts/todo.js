@@ -1,12 +1,17 @@
-
+/**
+ * On load
+ */
 $(document).ready(function () {
-    restoreTaskList()
+    getOldTaskList()
     getDefaultValues()
     $("form").on("submit", getTask)
 
 })
 
-function restoreTaskList() {
+/**
+ *Gets the already saved tasks from the local storage
+ */
+function getOldTaskList() {
     let OldArray = JSON.parse(localStorage.getItem('task-details'))
     console.log(OldArray)
     if (OldArray !== null) {
@@ -16,6 +21,9 @@ function restoreTaskList() {
     }
 }
 
+/**
+ * Gets the default value for the form
+ */
 function getDefaultValues() {
     $("input[type=time]").val("00:00")
     let today = new Date().toISOString().substr(0, 10)
@@ -23,6 +31,10 @@ function getDefaultValues() {
     $(":text").val("Add task")
 }
 
+/**
+ * Gets the task input form the form 
+ * @return {boolean} false
+ */
 function getTask() {
     const formItemsArray = $("form").serializeArray()
     const taskItemsObj = {}
@@ -42,20 +54,33 @@ function getTask() {
     return false
 }
 
+/**
+ * Gets the tasks from the local storage 
+ * @param {String} key the name in the local storage
+ * @param {Object} value the object saved inside the array
+ * @return {Array} the array stored in the local storage
+ */
 function getTaskFromLS(key, value) {
     const taskItemsArray = JSON.parse(localStorage.getItem(key)) || []
-
     taskItemsArray.push(value)
     value.number = (taskItemsArray.length - 1)
-
     return taskItemsArray
 }
 
 
+/**
+ * saves the task to the local storage
+ * @param {String} key  the name in the local storage
+ * @param {Array} value the array saved to local storage
+ */
 function saveTaskToLS(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
+/**
+ * Displays task on DOM
+ * @param {Array} arrayPassed the array to be displayed
+ */
 function showTask(arrayPassed) {
     $("ul").empty()
     for (i = 0; i < arrayPassed.length; i++) {
@@ -84,6 +109,11 @@ function showTask(arrayPassed) {
     }
 }
 
+/**
+ * Allows user to edit an item
+ * @param {Number} taskNumber 
+ * @param {Array} arrayPassed 
+ */
 function editItem(taskNumber, arrayPassed) {
     const taskText = arrayPassed[taskNumber].text
     const taskTime = arrayPassed[taskNumber].time
@@ -97,14 +127,24 @@ function editItem(taskNumber, arrayPassed) {
     removeTask()
 }
 
+/**
+ * Scrolls to bottom of List
+ */
 function addScrollToList() {
     $("ul").scrollTop($("ul")[0].scrollHeight)
 }
 
+/**
+ * Removes Task from DOM
+ */
 function removeTask() {
     $(event.target).parent().parent().parent().remove()
 }
 
+/**
+ * Removes task from Local Storage
+ * @param {Number} taskNumber 
+ */
 function removeTaskFromLS(taskNumber) {
     const modifiedArray = JSON.parse(localStorage.getItem('task-details'))
     const number = taskNumber
@@ -117,9 +157,9 @@ function removeTaskFromLS(taskNumber) {
     saveTaskToLS('task-details', modifiedArray)
 }
 
-
+//WIP
 function getTaskCountPerDay() {
-    return 100
+
 
 }
 
@@ -127,7 +167,11 @@ function getTaskCountPerDay() {
 
 
 
-
-
+//get the current number displayed
+//change to other months
+//edit to be improved
+//sorting to be improved
+//add swedish holidays
+//filter by chosen day
 
 
