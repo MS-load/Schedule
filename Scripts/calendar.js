@@ -39,10 +39,6 @@ for (let i = 1; i <= numberOfDaysInMonth; i++) {
     let dateBox = document.createElement("div")
     dateBox.innerText = i
     dateContainer.appendChild(dateBox)
-
-    // taskCount = document.createElement("p")
-    // taskCount.innerHTML = getTaskCountPerDay()
-    // dateBox.appendChild(taskCount)
 }
 
 

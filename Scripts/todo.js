@@ -160,12 +160,10 @@ function removeTaskFromLS(taskNumber) {
 //WIP
 function getTaskCountPerDay() {
 
-
+    // taskCount = document.createElement("p")
+    // taskCount.innerHTML = getTaskCountPerDay()
+    // dateBox.appendChild(taskCount)
 }
-
-
-
-
 
 //get the current number displayed
 //change to other months
