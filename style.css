@@ -151,11 +151,16 @@ li div>p {
     background-color: white;
     padding: 0.5rem;
     text-align: left;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #dateContainer div p {
     margin:0;
+    padding:0;
     text-align: right;
+    bottom:0;
 }
 
 .weekdays-container {

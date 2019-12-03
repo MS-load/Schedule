@@ -5,6 +5,7 @@ $(document).ready(function () {
     renderOldTaskList()
     renderDefaultValues()
     $("form").on("submit", getTask)
+
 })
 
 /**
@@ -48,10 +49,7 @@ function getTask() {
 
     renderTask(savedArray)
 
-    getNrOfDaysInMonth(dateContainer, d)
-
     $(":text").val("")
-
     return false
 }
 
@@ -97,6 +95,8 @@ function renderTask(arrayPassed) {
             "<li><div><p>" + taskText + "</p><p>" + edit + trash + "</p></div><div><p> time: " +
             taskTime + "</p><p> date: " + taskDate + "</p></div></li >")
 
+
+
         addScrollToList()
 
         $("." + taskNumber).click(function () {
@@ -108,6 +108,7 @@ function renderTask(arrayPassed) {
             editItem(taskNumber, arrayPassed)
         })
     }
+
 }
 
 /**
@@ -158,10 +159,12 @@ function removeTaskFromLS(taskNumber) {
     saveTaskToLS('task-details', modifiedArray)
 }
 
-function getTaskCountPerDay(searchTaskDate) {
-
-    let arrayToCheck = JSON.parse(localStorage.getItem('task-details')) || []
+function getTaskCountPerDay(searchTaskDate, dateBox) {
     
+    TaskCount = document.createElement("p")
+    dateBox.appendChild(TaskCount)
+    let arrayToCheck = JSON.parse(localStorage.getItem('task-details')) || []
+
     let numberOfTasks = 0
 
     for (let i = 0; i < arrayToCheck.length; i++) {
@@ -170,8 +173,14 @@ function getTaskCountPerDay(searchTaskDate) {
         }
     }
 
-    return numberOfTasks
+    if (numberOfTasks > 0) {
+        return TaskCount.innerText = numberOfTasks
+    }
+    else{
+        return TaskCount.innerText = ""
+    }
 }
+
 
 //get the current number displayed
 //change to other months

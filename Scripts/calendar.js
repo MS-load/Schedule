@@ -1,15 +1,10 @@
-window.addEventListener('load', loadPage)
 
-/**
- * Runs on page load
- */
-function loadPage() {
-    const dateContainer = document.getElementById("dateContainer")
-    const d = new Date()
-    getMonthName(d)
-    getCorrectFirstDay(dateContainer, d)
-    getNrOfDaysInMonth(dateContainer, d)
-}
+let dateContainer = document.getElementById("dateContainer")
+const d = new Date()
+getMonthName(d)
+getCorrectFirstDay(dateContainer, d)
+renderDates(dateContainer, d)
+
 
 /**
  * Makes the calender start on correct weekday
@@ -30,24 +25,21 @@ function getCorrectFirstDay(dateContainer, d) {
  * @param {HTMLDivElement} dateContainer
  * @param {String} d is the date required
  */
-function getNrOfDaysInMonth(dateContainer, d) {
+function renderDates(dateContainer, d) {
     const numberOfDaysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
-    const month = (d.getMonth() + 1)
-    const year = (d.getFullYear()) 
+
 
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
         let dateBox = document.createElement("div")
-        dateBox.className = "Date"
         dateBox.innerText = i
         dateContainer.appendChild(dateBox)
-        TaskCount = document.createElement("p")
-        dateBox.appendChild(TaskCount)
+
+
+        const month = (d.getMonth() + 1)
+        const year = (d.getFullYear())
 
         let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
-        TaskCount.innerText = getTaskCountPerDay(searchTaskDate)
-        
-        console.log(typeof searchTaskDate)
-
+        getTaskCountPerDay(searchTaskDate, dateBox)
     }
 }
 
