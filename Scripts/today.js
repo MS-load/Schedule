@@ -3,6 +3,7 @@ window.addEventListener('load', loadSite)
 
 function loadSite() {
     uppdateCurrentTime()
+    console.log(new Date())
 }
 
 
