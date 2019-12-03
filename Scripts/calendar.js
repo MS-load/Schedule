@@ -1,4 +1,4 @@
-const date = new Date(2019, 4)
+const date = new Date()
 window.addEventListener("load", loadPage)
 
 /**
@@ -20,19 +20,26 @@ function initCalendarMonth() {
 }
 
 function onNextClicked() {
+    clearDivs()
     date.setMonth(date.getMonth() + 1)
     initCalendarMonth()
 }
 
 function onPreviousClicked() {
+    clearDivs()
     date.setMonth(date.getMonth() - 1)
     initCalendarMonth()
 }
 
 function setupEventListeners() {
-    document.getElementById("previous-button").addEventListener("click", initCalendarMonth)
-    document.getElementById("next-button").addEventListener("click", initCalendarMonth)
+    document.getElementById("previous-button").addEventListener("click", onPreviousClicked)
+    document.getElementById("next-button").addEventListener("click", onNextClicked)
 }
+
+function clearDivs() {
+    document.getElementById("dateContainer").innerHTML = " ";
+}
+
 
 /**
  * Makes the calender start on correct weekday
