@@ -1,5 +1,5 @@
-const date = new Date()
-window.addEventListener('load', loadPage)
+const date = new Date(2019, 4)
+window.addEventListener("load", loadPage)
 
 /**
  * 
@@ -9,6 +9,7 @@ function loadPage() {
     initCalendarMonth()
     setupEventListeners()
 }
+
 
 function initCalendarMonth() {
     const dateContainer = document.getElementById("dateContainer")
@@ -26,6 +27,11 @@ function onNextClicked() {
 function onPreviousClicked() {
     date.setMonth(date.getMonth() - 1)
     initCalendarMonth()
+}
+
+function setupEventListeners() {
+    document.getElementById("previous-button").addEventListener("click", initCalendarMonth)
+    document.getElementById("next-button").addEventListener("click", initCalendarMonth)
 }
 
 /**
@@ -73,6 +79,9 @@ function getNrOfDaysInMonth(dateContainer, date) {
  * @param {String} date is the date required
  */
 function updateMonthName(date) {
-    const monthName = getMonthName(date)
-    document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
+    const month = ["January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"]
+    
+    const monthName = month[date.getMonth()]
+            document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
 }
