@@ -1,23 +1,22 @@
+
 window.addEventListener('load', loadSite)
 
 function loadSite() {
     uppdateCurrentTime()
-
 }
 
 
 /**
  * Publish the current date, month and time
- */ 
+ * 
+ */
 function uppdateCurrentTime() {
     const dateContainer = document.getElementsByClassName("date")[0]
     const weekdayContainer = document.getElementsByClassName("weekday")[0]
     const timeContainer = document.getElementsByClassName("time")[0]
 
-    
 
-    //TODO. change function-name, not a great name!  
-    setInterval(function() {
+    setInterval(function () {
         const date = new Date()
         const monthName = getMonthName(date)
         const weekdayName = getWeekdayName(date)
@@ -28,18 +27,20 @@ function uppdateCurrentTime() {
     }, 1000)
 }
 
+
 /**
+ * @param {string} date -returns the name of the current month
  * 
- * @param {*} date 
  */
 function getMonthName(date) {
     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     return month[date.getMonth()]
 }
 
+
 /**
+ * @param {string} date -returns the name of the current weekday
  * 
- * @param {*} date 
  */
 function getWeekdayName(date) {
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
