@@ -144,6 +144,7 @@ li div>p {
     grid-area: dates;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    
 }
 
 #dateContainer div {
@@ -154,6 +155,8 @@ li div>p {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: -1px 0 0 -1px;
+    max-height: 2.5rem;
 }
 
 #dateContainer div p {
@@ -161,6 +164,8 @@ li div>p {
     padding:0;
     text-align: right;
     bottom:0;
+    font-size: 0.7rem;
+
 }
 
 .weekdays-container {

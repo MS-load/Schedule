@@ -1,8 +1,10 @@
+let id = 0
+
 /**
  * On load
  */
 $(document).ready(function () {
-    renderOldTaskList()
+    renderSavedTasksList()
     renderDefaultValues()
     $("form").on("submit", getTask)
 
@@ -11,13 +13,13 @@ $(document).ready(function () {
 /**
  *Renders the already saved tasks from the local storage
  */
-function renderOldTaskList() {
-    let OldArray = JSON.parse(localStorage.getItem('task-details'))
-    //console.log(OldArray)
-    if (OldArray !== null) {
-        renderTask(OldArray)
+function renderSavedTasksList() {
+    let storedTasks = JSON.parse(localStorage.getItem('task-details'))
+    //console.log(storedTasks)
+    if (storedTasks !== null) {
+        renderTask(storedTasks)
     } else {
-        OldArray = []
+        storedTasks = []
     }
 }
 
@@ -36,18 +38,19 @@ function renderDefaultValues() {
  * @return {boolean} false
  */
 function getTask() {
-    const formItemsArray = $("form").serializeArray()
-    const taskItemsObj = {}
-
-    $(formItemsArray).each(function (i, field) {
-        taskItemsObj[field.name] = field.value
+    const taskItemDetails = {}
+    const taskDetails = $("form").serializeArray()
+    $(taskDetails).each(function (i, field) {
+        taskItemDetails[field.name] = field.value
     })
+    taskItemDetails.id = id++
 
-    const savedArray = getTaskFromLS('task-details', taskItemsObj)
+    console.log(taskItemDetails)
+    const taskFromLS = getTaskFromLS('task-details', taskItemDetails)
 
-    saveTaskToLS('task-details', savedArray)
+    saveTaskToLS('task-details', taskFromLS)
 
-    renderTask(savedArray)
+    renderTask(taskFromLS)
 
     $(":text").val("")
     return false
@@ -60,10 +63,9 @@ function getTask() {
  * @return {Array} the array stored in the local storage
  */
 function getTaskFromLS(key, value) {
-    const taskItemsArray = JSON.parse(localStorage.getItem(key)) || []
-    taskItemsArray.push(value)
-    value.number = (taskItemsArray.length - 1)
-    return taskItemsArray
+    const initialTaskDetails = JSON.parse(localStorage.getItem(key)) || []
+    initialTaskDetails.push(value)
+    return initialTaskDetails
 }
 
 
@@ -78,15 +80,15 @@ function saveTaskToLS(key, value) {
 
 /**
  * Displays task on DOM
- * @param {Array} arrayPassed the array to be displayed
+ * @param {Array} taskToRender the array to be displayed
  */
-function renderTask(arrayPassed) {
+function renderTask(taskToRender) {
     $("ul").empty()
-    for (i = 0; i < arrayPassed.length; i++) {
-        const taskText = arrayPassed[i].text
-        const taskTime = arrayPassed[i].time
-        const taskDate = arrayPassed[i].date
-        const taskNumber = arrayPassed[i].number
+    for (i = 0; i < taskToRender.length; i++) {
+        const taskText = taskToRender[i].text
+        const taskTime = taskToRender[i].time
+        const taskDate = taskToRender[i].date
+        const taskNumber = taskToRender[i].id
 
         const edit = "<i class='material-icons edit" + taskNumber + "'>edit</i>"
         const trash = "<i class='" + taskNumber + " material-icons'>delete</i>"
@@ -99,13 +101,16 @@ function renderTask(arrayPassed) {
 
         addScrollToList()
 
-        $("." + taskNumber).click(function () {
+        $(".material-icons").click(function () {
             removeTaskFromLS(taskNumber)
             removeTask()
         })
 
-        $(".edit" + taskNumber).click(function () {
-            editItem(taskNumber, arrayPassed)
+        $(".edit").click(function () {
+            editItem(taskNumber, taskToRender)
+
+            removeTaskFromLS(taskNumber)
+            removeTask()
         })
     }
 
@@ -114,19 +119,17 @@ function renderTask(arrayPassed) {
 /**
  * Allows user to edit an item
  * @param {Number} taskNumber 
- * @param {Array} arrayPassed 
+ * @param {Array} taskToRender 
  */
-function editItem(taskNumber, arrayPassed) {
-    const taskText = arrayPassed[taskNumber].text
-    const taskTime = arrayPassed[taskNumber].time
-    const taskDate = arrayPassed[taskNumber].date
+function editItem(taskNumber, taskToRender) {
+    const editText = taskToRender[taskNumber].text
+    const editTime = taskToRender[taskNumber].time
+    const editDate = taskToRender[taskNumber].date
+    console.log(taskNumber)
+    $("input[type=time]").val(editTime)
+    $("input[type=date]").val(editDate)
+    $(":text").val(editText)
 
-    $("input[type=time]").val(taskTime)
-    $("input[type=date]").val(taskDate)
-    $(":text").val(taskText)
-
-    removeTaskFromLS(taskNumber)
-    removeTask()
 }
 
 /**
@@ -148,36 +151,35 @@ function removeTask() {
  * @param {Number} taskNumber 
  */
 function removeTaskFromLS(taskNumber) {
-    const modifiedArray = JSON.parse(localStorage.getItem('task-details'))
+    const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
     const number = taskNumber
-    for (let i = 0; i < modifiedArray.length; i++) {
-        if (modifiedArray[i].number == number) {
-            modifiedArray.splice(i, 1)
+    for (let i = 0; i < modifiedTaskDetail.length; i++) {
+        if (modifiedTaskDetail[i].number == number) {
+            modifiedTaskDetail.splice(i, 1)
             break
         }
     }
-    saveTaskToLS('task-details', modifiedArray)
+    saveTaskToLS('task-details', modifiedTaskDetail)
 }
 
 function getTaskCountPerDay(searchTaskDate, dateBox) {
-    
+
     TaskCount = document.createElement("p")
     dateBox.appendChild(TaskCount)
-    let arrayToCheck = JSON.parse(localStorage.getItem('task-details')) || []
+    let latestTaskDetail = JSON.parse(localStorage.getItem('task-details')) || []
 
     let numberOfTasks = 0
 
-    for (let i = 0; i < arrayToCheck.length; i++) {
-        if (searchTaskDate == arrayToCheck[i].date) {
+    for (let i = 0; i < latestTaskDetail.length; i++) {
+        if (searchTaskDate == latestTaskDetail[i].date) {
             numberOfTasks++
         }
     }
-
     if (numberOfTasks > 0) {
         return TaskCount.innerText = numberOfTasks
     }
-    else{
-        return TaskCount.innerText = ""
+    else {
+        return TaskCount.innerText = " "
     }
 }
 

@@ -1,18 +1,23 @@
 
-let dateContainer = document.getElementById("dateContainer")
-const d = new Date()
-getMonthName(d)
-getCorrectFirstDay(dateContainer, d)
-renderDates(dateContainer, d)
+window.addEventListener('load', loadSite)
+
+function loadSite() {
+    let dateContainer = document.getElementById("dateContainer")
+    const date = new Date()
+    getMonthName(date)
+    getCorrectFirstDay(dateContainer, date)
+    renderDates(dateContainer, date)
+}
+
 
 
 /**
  * Makes the calender start on correct weekday
  * @param {HTMLDivElement} dateContainer 
- * @param {String} d is the date required
+ * @param {String} date is the date required
  */
-function getCorrectFirstDay(dateContainer, d) {
-    const dayInWeek = new Date(d.getFullYear(), d.getMonth(), 0).getDay()
+function getCorrectFirstDay(dateContainer, date) {
+    const dayInWeek = new Date(date.getFullYear(), date.getMonth(), 0).getDay()
 
     for (let i = 0; i < dayInWeek; i++) {
         let emptyBox = document.createElement("div")
@@ -23,10 +28,10 @@ function getCorrectFirstDay(dateContainer, d) {
 /**
  * Populate the dates
  * @param {HTMLDivElement} dateContainer
- * @param {String} d is the date required
+ * @param {String} date is the date required
  */
-function renderDates(dateContainer, d) {
-    const numberOfDaysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
+function renderDates(dateContainer, date) {
+    const numberOfDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
 
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
@@ -35,8 +40,8 @@ function renderDates(dateContainer, d) {
         dateContainer.appendChild(dateBox)
 
 
-        const month = (d.getMonth() + 1)
-        const year = (d.getFullYear())
+        const month = (date.getMonth() + 1)
+        const year = (date.getFullYear())
 
         let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
         getTaskCountPerDay(searchTaskDate, dateBox)
@@ -45,18 +50,13 @@ function renderDates(dateContainer, d) {
 
 /**
  * Gets the month name
- * @param {String} d is the date required
+ * @param {String} date is the date required
  */
-function getMonthName(d) {
+function getMonthName(date) {
     const month = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"]
 
-    const monthName = month[d.getMonth()]
-    document.getElementById("calendar").innerText = monthName + ' ' + d.getFullYear()
-
-
+    const monthName = month[date.getMonth()]
+    document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
 }
 
-function displayedMonth() {
-
-}
