@@ -23,7 +23,7 @@ function getTimeNow() {
     const weekdayName = weekday[d.getDay()];
 
     /**
-     * changes 0-11 to january-febuary
+     * changes 0-11 to january-february
      */
     const month = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"]
