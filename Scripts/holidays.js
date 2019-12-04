@@ -21,10 +21,13 @@ function listHolidaysFor2019() {
 function printHolidays(allDays) {
     for (const day of allDays) {
         if (day["röd dag"] === "Ja") {
-            console.log(day.helgdag + " " + day.datum)
-
+            const holidays= [] 
+            holidays.push(day.datum)
+            console.log(holidays)
         }
     }
+
+
 
 }
 

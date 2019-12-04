@@ -2,7 +2,6 @@ const date = new Date()
 window.addEventListener("load", loadPage)
 
 /**
- * 
  * Runs on page load
  */
 function loadPage() {
@@ -15,10 +14,9 @@ function loadPage() {
  */
 function initCalendarMonth() {
     const dateContainer = document.getElementById("dateContainer")
-    
     updateMonthName(date)
     getCorrectFirstDay(dateContainer, date)
-    getNrOfDaysInMonth(dateContainer, date)
+    renderDatesOfMonth(dateContainer, date)
 }
 
 /**
@@ -48,15 +46,12 @@ function setupEventListeners() {
     document.getElementById("next-button").addEventListener("click", onNextClicked)
 }
 
-
-
 /**
  * Clears the calendar ready to be rewritten when buttons are clicked
  */
 function clearDivs() {
     document.getElementById("dateContainer").innerHTML = " ";
 }
-
 
 /**
  * Makes the calender start on correct weekday
@@ -80,7 +75,7 @@ function getCorrectFirstDay(dateContainer, date) {
  * @param {HTMLDivElement} dateContainer
  * @param {String} date is the date required
  */
-function getNrOfDaysInMonth(dateContainer, date) {
+function renderDatesOfMonth(dateContainer, date) {
     const numberOfDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
@@ -94,6 +89,7 @@ function getNrOfDaysInMonth(dateContainer, date) {
 
         let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
         getTaskCountPerDay(searchTaskDate, dateBox)
+        getHolidays(searchTaskDate, dateBox)
     }
 }
 

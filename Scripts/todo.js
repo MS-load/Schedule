@@ -7,7 +7,6 @@ $(document).ready(function () {
     renderSavedTasksList()
     renderDefaultValues()
     $("form").on("submit", getTask)
-
 })
 
 /**
@@ -51,8 +50,8 @@ function getTask() {
     saveTaskToLS('task-details', taskFromLS)
 
     renderTask(taskFromLS)
-
     $(":text").val("")
+    getTaskCountPerDay(searchTaskDate, dateBox)
     return false
 }
 
@@ -179,13 +178,10 @@ function getTaskCountPerDay(searchTaskDate, dateBox) {
         return TaskCount.innerText = numberOfTasks
     }
     else {
-        return TaskCount.innerText = " "
+        return TaskCount.innerText = ""
     }
 }
 
-
-//get the current number displayed
-//change to other months
 //edit to be improved
 //sorting to be improved
 //add swedish holidays
