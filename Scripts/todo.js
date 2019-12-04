@@ -1,5 +1,4 @@
-let id = 0
-
+let editing = false
 /**
  * On load
  */
@@ -27,6 +26,7 @@ function renderSavedTasksList() {
  */
 function renderDefaultValues() {
     $("input[type=time]").val("00:00")
+    let time = new Date().toISOString().substr(0, 10)
     let today = new Date().toISOString().substr(0, 10)
     $("input[type=date]").val(today)
     $(":text").val("Add task")
@@ -36,13 +36,14 @@ function renderDefaultValues() {
  * Gets the task input form the form 
  * @return {boolean} false
  */
-function getTask() {
+function getTask(event) {
+    event.preventDefault()
     const taskItemDetails = {}
     const taskDetails = $("form").serializeArray()
     $(taskDetails).each(function (i, field) {
         taskItemDetails[field.name] = field.value
     })
-    taskItemDetails.id = id++
+    taskItemDetails.id = + new Date()
 
     console.log(taskItemDetails)
     const taskFromLS = getTaskFromLS('task-details', taskItemDetails)
@@ -51,7 +52,9 @@ function getTask() {
 
     renderTask(taskFromLS)
     $(":text").val("")
-    getTaskCountPerDay(searchTaskDate, dateBox)
+    $("input").css({ "background-color": "", "color": "", "border": "" })
+    initCalendarMonth()
+
     return false
 }
 
@@ -87,48 +90,57 @@ function renderTask(taskToRender) {
         const taskText = taskToRender[i].text
         const taskTime = taskToRender[i].time
         const taskDate = taskToRender[i].date
-        const taskNumber = taskToRender[i].id
+        const taskId = taskToRender[i].id
 
-        const edit = "<i class='material-icons edit" + taskNumber + "'>edit</i>"
-        const trash = "<i class='" + taskNumber + " material-icons'>delete</i>"
+        const edit = "<i class='material-icons edit'>edit</i>"
+        const trash = "<i class='material-icons delete'>delete</i>"
 
         $("ul").append(
-            "<li><div><p>" + taskText + "</p><p>" + edit + trash + "</p></div><div><p> time: " +
+            "<li><div><p>" + taskText + "</p><p id ='" + taskId + "'>" + edit + trash + "</p></div><div><p> time: " +
             taskTime + "</p><p> date: " + taskDate + "</p></div></li >")
-
-
 
         addScrollToList()
 
-        $(".material-icons").click(function () {
-            removeTaskFromLS(taskNumber)
+        $("#" + taskId + " .delete").click(function () {
+            elementId = $(this).parent().attr('id')
+            removeTaskFromLS(elementId)
             removeTask()
+            initCalendarMonth()
         })
 
-        $(".edit").click(function () {
-            editItem(taskNumber, taskToRender)
-
-            removeTaskFromLS(taskNumber)
-            removeTask()
+        $("#" + taskId + " .edit").click(function () {
+            editing = true
+            elementId = $(this).parent().attr('id')
+            editItem(elementId, taskToRender)
         })
     }
-
 }
 
 /**
  * Allows user to edit an item
- * @param {Number} taskNumber 
+ * @param {Number} elementId 
  * @param {Array} taskToRender 
  */
-function editItem(taskNumber, taskToRender) {
-    const editText = taskToRender[taskNumber].text
-    const editTime = taskToRender[taskNumber].time
-    const editDate = taskToRender[taskNumber].date
-    console.log(taskNumber)
-    $("input[type=time]").val(editTime)
-    $("input[type=date]").val(editDate)
-    $(":text").val(editText)
+function editItem(elementId, taskToRender) {
+    const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
 
+    for (let i = 0; i < modifiedTaskDetail.length; i++) {
+        if (elementId == modifiedTaskDetail[i].id) {
+            const editText = taskToRender[i].text
+            const editTime = taskToRender[i].time
+            const editDate = taskToRender[i].date
+
+            $("input[type=time]").val(editTime)
+            $("input").css({ "background-color": "white", "color": "red", "border": "solid red 0.5px" })
+
+            $("input[type=date]").val(editDate)
+            $("input[type=date]").val(editDate)
+            $(":text").val(editText)
+            $(":text").val(editText)
+        }
+    }
+    removeTaskFromLS(elementId)
+    removeTask()
 }
 
 /**
@@ -147,13 +159,13 @@ function removeTask() {
 
 /**
  * Removes task from Local Storage
- * @param {Number} taskNumber 
+ * @param {Number} taskId 
  */
-function removeTaskFromLS(taskNumber) {
+function removeTaskFromLS(elementId) {
     const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
-    const number = taskNumber
+
     for (let i = 0; i < modifiedTaskDetail.length; i++) {
-        if (modifiedTaskDetail[i].number == number) {
+        if (elementId == modifiedTaskDetail[i].id) {
             modifiedTaskDetail.splice(i, 1)
             break
         }
@@ -161,12 +173,8 @@ function removeTaskFromLS(taskNumber) {
     saveTaskToLS('task-details', modifiedTaskDetail)
 }
 
-function getTaskCountPerDay(searchTaskDate, dateBox) {
-
-    TaskCount = document.createElement("p")
-    dateBox.appendChild(TaskCount)
-    let latestTaskDetail = JSON.parse(localStorage.getItem('task-details')) || []
-
+function getTaskCountPerDay(searchTaskDate) {
+    const latestTaskDetail = JSON.parse(localStorage.getItem('task-details')) || []
     let numberOfTasks = 0
 
     for (let i = 0; i < latestTaskDetail.length; i++) {
@@ -175,16 +183,15 @@ function getTaskCountPerDay(searchTaskDate, dateBox) {
         }
     }
     if (numberOfTasks > 0) {
-        return TaskCount.innerText = numberOfTasks
+        return numberOfTasks
     }
     else {
-        return TaskCount.innerText = ""
+        return ""
     }
 }
 
-//edit to be improved
-//sorting to be improved
 //add swedish holidays
 //filter by chosen day
+//sorting to be improved
 
 

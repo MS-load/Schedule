@@ -13,6 +13,7 @@ function loadPage() {
  * Starts to write the calendar for this month
  */
 function initCalendarMonth() {
+    clearDivs()
     const dateContainer = document.getElementById("dateContainer")
     updateMonthName(date)
     getCorrectFirstDay(dateContainer, date)
@@ -23,7 +24,6 @@ function initCalendarMonth() {
  * Writes the calendar for next month 
  */
 function onNextClicked() {
-    clearDivs()
     date.setMonth(date.getMonth() + 1)
     initCalendarMonth()
 }
@@ -32,7 +32,6 @@ function onNextClicked() {
  * Writes the calendar for previous month
  */
 function onPreviousClicked() {
-    clearDivs()
     date.setMonth(date.getMonth() - 1)
     initCalendarMonth()
 }
@@ -76,6 +75,7 @@ function getCorrectFirstDay(dateContainer, date) {
  * @param {String} date is the date required
  */
 function renderDatesOfMonth(dateContainer, date) {
+
     const numberOfDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
@@ -88,8 +88,10 @@ function renderDatesOfMonth(dateContainer, date) {
         const year = (date.getFullYear())
 
         let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
-        getTaskCountPerDay(searchTaskDate, dateBox)
-        getHolidays(searchTaskDate, dateBox)
+        TaskCount = document.createElement("p")
+        dateBox.appendChild(TaskCount)
+        TaskCount.innerText = getTaskCountPerDay(searchTaskDate)
+        //getHolidays(searchTaskDate, dateBox)
     }
 }
 
@@ -100,7 +102,7 @@ function renderDatesOfMonth(dateContainer, date) {
 function updateMonthName(date) {
     const month = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"]
-    
+
     const monthName = month[date.getMonth()]
-            document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
+    document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
 }

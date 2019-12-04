@@ -6,7 +6,7 @@ function loadPage() {
 function listHolidaysFor2019() {
 
     $.ajax({
-        url: "http://api.dryg.net/dagar/v2.1/2019",
+        url: "http://api.dryg.net/dagar/v2.1/" + year + "/" + month,
         type: "GET",
         dataType: "jsonp",
     }).then(function (data) {
