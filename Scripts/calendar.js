@@ -89,7 +89,7 @@ function renderDatesOfMonth(dateContainer, date) {
 
         let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
         getTaskCountPerDay(searchTaskDate, dateBox)
-        getHolidays(searchTaskDate, dateBox)
+        /* getHolidays(searchTaskDate, dateBox) */
     }
 }
 
