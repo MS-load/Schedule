@@ -158,6 +158,8 @@ li div>p {
     grid-area: dates;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1fr;
+    
 }
 
 #dateContainer div {
@@ -165,12 +167,20 @@ li div>p {
     background-color: white;
     padding: 0.5rem;
     text-align: left;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: -1px 0 0 -1px;
+    font-weight: bold;
 }
 
 #dateContainer div p {
     margin:0;
+    padding:0;
     text-align: right;
-    border: 0.5px solid grey;
+    bottom:0;
+    font-size: 0.7rem;
+    color:  grey;
 
 }
 
@@ -190,11 +200,5 @@ li div>p {
     }
     ul {
         height: 10rem;
-    }
-}
-
-@media (min-width: 992px) {
-    html {
-        font-size: 1.4rem;
     }
 }

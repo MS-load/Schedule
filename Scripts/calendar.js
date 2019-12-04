@@ -2,7 +2,6 @@ const date = new Date()
 window.addEventListener("load", loadPage)
 
 /**
- * 
  * Runs on page load
  */
 function loadPage() {
@@ -15,10 +14,9 @@ function loadPage() {
  */
 function initCalendarMonth() {
     const dateContainer = document.getElementById("dateContainer")
-    
     updateMonthName(date)
     getCorrectFirstDay(dateContainer, date)
-    getNrOfDaysInMonth(dateContainer, date)
+    renderDatesOfMonth(dateContainer, date)
 }
 
 /**
@@ -55,7 +53,6 @@ function clearDivs() {
     document.getElementById("dateContainer").innerHTML = " ";
 }
 
-
 /**
  * Makes the calender start on correct weekday
  * @param {HTMLDivElement} dateContainer 
@@ -69,7 +66,6 @@ function getCorrectFirstDay(dateContainer, date) {
      */
     for (let i = 0; i < dayInWeek; i++) {
         let emptyBox = document.createElement("div")
-        emptyBox.innerText = " "
         dateContainer.appendChild(emptyBox)
     }
 }
@@ -79,21 +75,22 @@ function getCorrectFirstDay(dateContainer, date) {
  * @param {HTMLDivElement} dateContainer
  * @param {String} date is the date required
  */
-function getNrOfDaysInMonth(dateContainer, date) {
+function renderDatesOfMonth(dateContainer, date) {
     const numberOfDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-    console.log(numberOfDaysInMonth)
 
-    /**
-     * Creates divs to print out all days in month in
-     */
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
         let dateBox = document.createElement("div")
         dateBox.innerText = i
         dateContainer.appendChild(dateBox)
-        
-    
-    }
 
+
+        const month = (date.getMonth() + 1)
+        const year = (date.getFullYear())
+
+        let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
+        getTaskCountPerDay(searchTaskDate, dateBox)
+        getHolidays(searchTaskDate, dateBox)
+    }
 }
 
 /**
