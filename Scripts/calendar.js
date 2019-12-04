@@ -15,12 +15,6 @@ function loadPage() {
  */
 function initCalendarMonth() {
     const dateContainer = document.getElementById("dateContainer")
-<<<<<<< HEAD
-    const d = new Date()
-    updateMonthName(d)
-    getCorrectFirstDay(dateContainer, d)
-    getNrOfDaysInMonth(dateContainer, d)
-=======
     
     updateMonthName(date)
     getCorrectFirstDay(dateContainer, date)
@@ -44,7 +38,6 @@ function onPreviousClicked() {
     date.setMonth(date.getMonth() - 1)
     initCalendarMonth()
 }
->>>>>>> master
 
 /**
  * When buttons are clicked functions are runned to rewrite calendar for new month
@@ -107,16 +100,10 @@ function getNrOfDaysInMonth(dateContainer, date) {
  * Gets the month name and year
  * @param {String} date is the date required
  */
-<<<<<<< HEAD
-function updateMonthName(d) {
-    const monthName = getMonthName(d)
-    document.getElementById("calendar").innerText = monthName + ' ' + d.getFullYear()
-=======
 function updateMonthName(date) {
     const month = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"]
     
     const monthName = month[date.getMonth()]
             document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
->>>>>>> master
 }
