@@ -10,6 +10,7 @@
     <!-- STYLE SHEET -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Open+Sans:400,700&display=swap" rel="stylesheet">
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,12 +36,15 @@
         <div class="left">
             <!-- CURRENT DATE AND TIME -->
             <div class="today">
-                <div class="today-date">
-                    <p class="date"></p>
-                    <p class="weekday"></p>
-                    <p class="time"></p>
+                <div class="current-date-container">
+                    <div class="today-date">
+                        <p class="date"></p>
+                        <p class="weekday"></p>
+                        <p class="time"></p>
+                    </div>
+                    <div><img class="season-icon" src="./media/0.svg">
+                    </div>
                 </div>
-                <div><img class="season-icon" src="./media/0.svg"></div>
             </div>
 
             <!-- TASKS -->
@@ -53,7 +57,7 @@
                     <input type="time" name="time">
                     <input type="date" name="date" required>
 
-                    <input type="submit" value="Add task">
+                    <input type="submit" value="ADD TASK">
                 </form>
             </div>
         </div>
