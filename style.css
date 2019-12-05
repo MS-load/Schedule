@@ -17,8 +17,8 @@ body {
 header {
     font-family: 'Bebas Neue', cursive;
     font-size: 2rem;
-    background:white;
-    color: rgb(178, 234, 250);
+    background: rgb(38, 38, 38);
+    color:white;
     text-align: center;
     flex-grow: 0.25;
     border-bottom: 0.05rem solid grey;
@@ -56,7 +56,7 @@ main {
     width: 80%;
     background-color: white;
     margin: 0.5rem;
-    border: 0.05rem solid grey;
+    
 }
 
 .season-icon {
