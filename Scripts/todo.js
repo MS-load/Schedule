@@ -1,4 +1,3 @@
-let editing = false
 /**
  * On load
  */
@@ -12,8 +11,7 @@ $(document).ready(function () {
  *Renders the already saved tasks from the local storage
  */
 function renderSavedTasksList() {
-    let storedTasks = JSON.parse(localStorage.getItem('task-details'))
-    //console.log(storedTasks)
+    const storedTasks = JSON.parse(localStorage.getItem('task-details'))
     if (storedTasks !== null) {
         renderTask(storedTasks)
     } else {
@@ -22,36 +20,37 @@ function renderSavedTasksList() {
 }
 
 /**
- * Gets the default value for the form
+ * Renders the default value for the form
  */
 function renderDefaultValues() {
-    $("input[type=time]").val("00:00")
-    let time = new Date().toISOString().substr(0, 10)
-    let today = new Date().toISOString().substr(0, 10)
-    $("input[type=date]").val(today)
+    const today = new Date().toISOString().substr(0, 10)
     $(":text").val("Add task")
+    $("input[type=time]").val("00:00")
+    $("input[type=date]").val(today)
 }
 
 /**
- * Gets the task input form the form 
- * @return {boolean} false
+ * Gets the task details from the form
+ * @param {MouseEvent} event 
  */
 function getTask(event) {
     event.preventDefault()
+
     const taskItemDetails = {}
     const taskDetails = $("form").serializeArray()
+
     $(taskDetails).each(function (i, field) {
         taskItemDetails[field.name] = field.value
     })
     taskItemDetails.id = + new Date()
 
-    console.log(taskItemDetails)
     const taskFromLS = getTaskFromLS('task-details', taskItemDetails)
 
     saveTaskToLS('task-details', taskFromLS)
 
     renderTask(taskFromLS)
     $(":text").val("")
+    $("input[type=submit]").val("Add Task")
     $("input").css({ "background-color": "", "color": "", "border": "" })
     initCalendarMonth()
 
@@ -74,10 +73,10 @@ function getTaskFromLS(key, value) {
 /**
  * saves the task to the local storage
  * @param {String} key  the name in the local storage
- * @param {Array} value the array saved to local storage
+ * @param {Array} valueToSet the array saved to local storage
  */
-function saveTaskToLS(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+function saveTaskToLS(key, valueToSet) {
+    localStorage.setItem(key, JSON.stringify(valueToSet))
 }
 
 /**
@@ -118,8 +117,8 @@ function renderTask(taskToRender) {
 
 /**
  * Allows user to edit an item
- * @param {Number} elementId 
- * @param {Array} taskToRender 
+ * @param {Number} elementId timestamp created for each element
+ * @param {Array} taskToRender the array to be passed
  */
 function editItem(elementId, taskToRender) {
     const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
@@ -130,13 +129,11 @@ function editItem(elementId, taskToRender) {
             const editTime = taskToRender[i].time
             const editDate = taskToRender[i].date
 
+            $(":text").val(editText)
             $("input[type=time]").val(editTime)
+            $("input[type=date]").val(editDate)
+            $("input[type=submit]").val("Edit Task")
             $("input").css({ "background-color": "white", "color": "red", "border": "solid red 0.5px" })
-
-            $("input[type=date]").val(editDate)
-            $("input[type=date]").val(editDate)
-            $(":text").val(editText)
-            $(":text").val(editText)
         }
     }
     removeTaskFromLS(elementId)
@@ -159,7 +156,7 @@ function removeTask() {
 
 /**
  * Removes task from Local Storage
- * @param {Number} taskId 
+ * @param {Number} elementId timestamp created for each element
  */
 function removeTaskFromLS(elementId) {
     const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
@@ -173,6 +170,10 @@ function removeTaskFromLS(elementId) {
     saveTaskToLS('task-details', modifiedTaskDetail)
 }
 
+/**
+ * gets the number of counts in a day 
+ * @param {String} searchTaskDate the relevant date
+ */
 function getTaskCountPerDay(searchTaskDate) {
     const latestTaskDetail = JSON.parse(localStorage.getItem('task-details')) || []
     let numberOfTasks = 0
@@ -190,7 +191,19 @@ function getTaskCountPerDay(searchTaskDate) {
     }
 }
 
-//add swedish holidays
+filterTask("2019-12-05")
+function filterTask(searchTaskDate) {
+
+
+    $("#" + searchTaskDate).click(function () {
+
+console.log(im clicked)
+
+
+    })
+
+}
+
 //filter by chosen day
 //sorting to be improved
 

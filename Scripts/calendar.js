@@ -37,7 +37,7 @@ function onPreviousClicked() {
 }
 
 /**
- * When buttons are clicked functions are runned to rewrite calendar for new month
+ * When buttons are clicked functions are run to rewrite calendar for new month
  * @param {mouseEvent}
  */
 function setupEventListeners() {
@@ -77,22 +77,24 @@ function getCorrectFirstDay(dateContainer, date) {
 function renderDatesOfMonth(dateContainer, date) {
 
     const numberOfDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+    const month = (date.getMonth() + 1)
+    const year = (date.getFullYear())
 
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
-        let dateBox = document.createElement("div")
+        const dateBox = document.createElement("div")
         dateBox.innerText = i
+
+        const searchDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
+
+        dateBox.setAttribute("data-date", searchDate)
         dateContainer.appendChild(dateBox)
 
-
-        const month = (date.getMonth() + 1)
-        const year = (date.getFullYear())
-
-        let searchTaskDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
         TaskCount = document.createElement("p")
         dateBox.appendChild(TaskCount)
-        TaskCount.innerText = getTaskCountPerDay(searchTaskDate)
-        //getHolidays(searchTaskDate, dateBox)
+        TaskCount.innerText = getTaskCountPerDay(searchDate)
     }
+    holidaysForCurrentMonth(year, month)
+
 }
 
 /**
@@ -106,3 +108,42 @@ function updateMonthName(date) {
     const monthName = month[date.getMonth()]
     document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
 }
+
+/**
+ * Gets teh holidays for the required month and year
+ * @param {Number} year 
+ * @param {Number} month 
+ */
+function holidaysForCurrentMonth(year, month) {
+
+    $.ajax({
+        url: "http://api.dryg.net/dagar/v2.1/" + year + "/" + month,
+        type: "GET",
+        dataType: "jsonp",
+    }).then(function (data) {
+        renderHolidays(data.dagar)
+    }).catch(function (response) {
+        console.error(response.statusText)
+    })
+}
+
+/**
+ * Renders the holidays Red
+ * @param {Array} allDays an array of all the dates in the specified month
+ */
+function renderHolidays(allDays) {
+    const holidays = []
+    for (const day of allDays) {
+        if (day["röd dag"] === "Ja") {
+            holidays.push(day.datum)
+        }
+    }
+    for (let i = 0; i < holidays.length; i++) {
+        let redDays = document.querySelector("[data-date='" + holidays[i] + "']")
+        redDays.style.color = "red"
+    }
+}
+
+
+
+
