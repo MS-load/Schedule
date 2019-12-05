@@ -122,6 +122,7 @@ li>div {
 li div>p {
     align-content: center;
     margin:0;
+    font-size: medium;
 }
 
 .calendar-container {

@@ -95,8 +95,8 @@ function renderTask(taskToRender) {
         const trash = "<i class='material-icons delete'>delete</i>"
 
         $("ul").append(
-            "<li><div><p>" + taskText + "</p><p id ='" + taskId + "'>" + edit + trash + "</p></div><div><p> time: " +
-            taskTime + "</p><p> date: " + taskDate + "</p></div></li >")
+            "<li><div><p>" + taskText + "</p><p id ='" + taskId + "'>" + edit + trash + "</p></div><div><p> Time: " +
+            taskTime + "</p><p> Date: " + taskDate + "</p></div></li >")
 
         addScrollToList()
 
@@ -191,18 +191,13 @@ function getTaskCountPerDay(searchTaskDate) {
     }
 }
 
-filterTask("2019-12-05")
-function filterTask(searchTaskDate) {
-
-
-    $("#" + searchTaskDate).click(function () {
-
-console.log(im clicked)
-
-
-    })
+filterTask()
+function filterTask() {
+    
 
 }
+
+
 
 //filter by chosen day
 //sorting to be improved

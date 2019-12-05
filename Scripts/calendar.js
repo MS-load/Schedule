@@ -53,16 +53,13 @@ function clearDivs() {
 }
 
 /**
- * Makes the calender start on correct weekday
+ * Gives the day on which the month begins
  * @param {HTMLDivElement} dateContainer 
  * @param {String} date is the date required
  */
 function getCorrectFirstDay(dateContainer, date) {
     const dayInWeek = new Date(date.getFullYear(), date.getMonth(), 0).getDay()
-    console.log(dayInWeek)
-    /**
-     * Gives the correct day on first day of month
-     */
+
     for (let i = 0; i < dayInWeek; i++) {
         let emptyBox = document.createElement("div")
         dateContainer.appendChild(emptyBox)
@@ -83,8 +80,8 @@ function renderDatesOfMonth(dateContainer, date) {
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
         const dateBox = document.createElement("div")
         dateBox.innerText = i
-
         const searchDate = (year + "-" + String(month).padStart(2, '0') + "-" + (String(i).padStart(2, '0')))
+
 
         dateBox.setAttribute("data-date", searchDate)
         dateContainer.appendChild(dateBox)
@@ -92,7 +89,17 @@ function renderDatesOfMonth(dateContainer, date) {
         TaskCount = document.createElement("p")
         dateBox.appendChild(TaskCount)
         TaskCount.innerText = getTaskCountPerDay(searchDate)
+
+
     }
+    $("#dateContainer > div").on("click", function () {
+        console.log( $(event.target).attr("data-date"))
+        const selectedElement =  $(event.target).attr("data-date")
+        $('[data-date="'+ selectedElement +'"]').css({"background-color": "rgba(173, 239, 209, 1.00)"})
+      
+
+     });
+    
     holidaysForCurrentMonth(year, month)
 
 }
