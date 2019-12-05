@@ -95,10 +95,10 @@ function renderDatesOfMonth(dateContainer, date) {
     $("#dateContainer > div").on("click", function () {
         console.log( $(event.target).attr("data-date"))
         const selectedElement =  $(event.target).attr("data-date")
-        $('[data-date="'+ selectedElement +'"]').css({"background-color": "rgba(173, 239, 209, 1.00)"})
+        $('[data-date="'+ selectedElement +'"]').css({"background-color": "yellow"})
       
 
-     });
+     })
     
     holidaysForCurrentMonth(year, month)
 
