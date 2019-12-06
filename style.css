@@ -106,7 +106,7 @@ li div>p {
     align-content: center;
     margin: 0;
     font-size: medium;
-    padding-left: 1rem;
+    padding-left: 0rem;
 }
 
 .material-icons {
@@ -211,5 +211,8 @@ input {
     }
     .calendar-container {
         display: grid;
+    }
+    ul {
+        height: 10rem;
     }
 }

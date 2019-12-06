@@ -1,4 +1,3 @@
-
 const date = new Date()
 let clicked = null
 window.addEventListener("load", loadPage)

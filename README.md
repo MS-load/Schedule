@@ -39,13 +39,13 @@ A mobile friendly planner<br>
     </li>
     <li>Icons
         <ul>
-            <li>icons8.com</li>
+            <!-- <li>icons8.com</li> -->
             <li>Material-UI</li>
         </ul>
     </li>
     <li>Fonts
         <ul>
-            <li>Google fonts: 'Maven Pro', 'Patua One'</li>
+            <!-- <li>Google fonts: 'Maven Pro', 'Patua One'</li> -->
         </ul>
     </li>
 </ul>
@@ -54,35 +54,5 @@ A mobile friendly planner<br>
 
 ### Project By:
 Mamta Srinivas, Lisa Bengtsson, Ellinor Carlberg
-
-### Credit:
-<ul>
-    <li>Background images
-        <ul>
-            <li>Homepage: Photo by Yoal Desurmont on Unsplash</li>
-            <li>Winning page: Image by collinsvisual from Pixabay</li>
-            <li>GameOver page: Photo by Daniel Hansen on Unsplash</li>
-        </ul>
-    </li>
-    <li>Icons
-        <ul>
-            <li>icons8.com</li>
-            <li>Material-UI</li>
-        </ul>
-    </li>
-    <li>Fonts
-        <ul>
-            <li>Google fonts: 'Maven Pro', 'Patua One'</li>
-        </ul>
-    </li>
-    <li>Music
-        <ul>
-            <li>dayfox-jungle-copyright-free-music</li>
-        </ul>
-    </li>
-</ul>
-
-***
-
-### Project By:
-Mamta Srinivas
+FED-19
+[Institution](http://medieinstitutet.se/)

@@ -1,3 +1,4 @@
+/** @type {Number} Prevents other items from being edited until submitted */
 let editCount = 0
 
 /**
