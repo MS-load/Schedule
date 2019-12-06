@@ -203,24 +203,22 @@ function getTaskCountPerDay(searchTaskDate) {
  * Renders the task for the selected day
  */
 function filterTasks() {
-    $("#dateContainer > div").on("click", function () {
+    $("#dateContainer").on("click", function () {
+        console.log("test")
         const selectedElement = $(event.target).attr("data-date")
         let allTasks = JSON.parse(localStorage.getItem('task-details')) || []
-        console.log(clicked)
         if (clicked != ($(event.target).attr("data-date"))) {
-            console.log($(event.target).attr("data-date"))
             $('[data-date="' + selectedElement + '"]').css({ "background-color": "rgba(173, 239, 209, 1.00)" })
             $('[data-date]').not('[data-date="' + selectedElement + '"]').css({ "background-color": "" })
             let filterTasks = allTasks.filter(task => {
                 return task.date === selectedElement
             })
-            console.log(filterTasks)
             renderTask(filterTasks)
             clicked = ($(event.target).attr("data-date"))
         }
         else {
             $('[data-date]').css({ "background-color": "" })
-            console.log("clicked")
+
             renderTask(allTasks)
         }
 

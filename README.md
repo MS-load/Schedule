@@ -39,13 +39,13 @@ A mobile friendly planner<br>
     </li>
     <li>Icons
         <ul>
-            <!-- <li>icons8.com</li> -->
+            <li>icons8.com</li>
             <li>Material-UI</li>
         </ul>
     </li>
     <li>Fonts
         <ul>
-            <!-- <li>Google fonts: 'Maven Pro', 'Patua One'</li> -->
+            <li>Google fonts: 'Maven Pro', 'Patua One'</li>
         </ul>
     </li>
 </ul>
@@ -53,6 +53,6 @@ A mobile friendly planner<br>
 ***
 
 ### Project By:
-Mamta Srinivas, Lisa Bengtsson, Ellinor Carlberg
-FED-19
+Mamta Srinivas, Lisa Bengtsson, Ellinor Carlberg</br>
+FED-19</br>
 [Institution](http://medieinstitutet.se/)
