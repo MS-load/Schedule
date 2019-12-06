@@ -1,5 +1,5 @@
 const date = new Date()
-let clicked = null
+let clicked
 window.addEventListener("load", loadPage)
 
 /**
@@ -9,7 +9,6 @@ function loadPage() {
     initCalendarMonth()
     setupEventListeners()
     filterTasks()
-    
 }
 
 /**
@@ -142,3 +141,4 @@ function renderHolidays(allDays) {
         $(redDays).css({ "color": "red" })
     }
 }
+
