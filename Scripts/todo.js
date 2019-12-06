@@ -1,4 +1,5 @@
-let id = 0
+/** @type {Number} Prevents other items from being edited until submitted */
+let editCount = 0
 
 /**
  * On load
@@ -13,8 +14,7 @@ $(document).ready(function () {
  *Renders the already saved tasks from the local storage
  */
 function renderSavedTasksList() {
-    let storedTasks = JSON.parse(localStorage.getItem('task-details'))
-    //console.log(storedTasks)
+    const storedTasks = JSON.parse(localStorage.getItem('task-details'))
     if (storedTasks !== null) {
         renderTask(storedTasks)
     } else {
@@ -23,35 +23,41 @@ function renderSavedTasksList() {
 }
 
 /**
- * Gets the default value for the form
+ * Renders the default value for the form
  */
 function renderDefaultValues() {
-    $("input[type=time]").val("00:00")
-    let today = new Date().toISOString().substr(0, 10)
-    $("input[type=date]").val(today)
+    const today = new Date().toISOString().substr(0, 10)
     $(":text").val("Add task")
+    $("input[type=time]").val("00:00")
+    $("input[type=date]").val(today)
 }
 
 /**
- * Gets the task input form the form 
- * @return {boolean} false
+ * Gets the task details from the form
+ * @param {MouseEvent} event 
  */
-function getTask() {
+function getTask(event) {
+    event.preventDefault()
+
     const taskItemDetails = {}
     const taskDetails = $("form").serializeArray()
+
     $(taskDetails).each(function (i, field) {
         taskItemDetails[field.name] = field.value
     })
-    taskItemDetails.id = id++
+    taskItemDetails.id = + new Date()
 
-    console.log(taskItemDetails)
     const taskFromLS = getTaskFromLS('task-details', taskItemDetails)
 
     saveTaskToLS('task-details', taskFromLS)
 
     renderTask(taskFromLS)
     $(":text").val("")
-    getTaskCountPerDay(searchTaskDate, dateBox)
+    $("input[type=submit]").val("Add Task")
+    $("input").css({ "background-color": "", "color": "", "border": "" })
+    editCount = 0
+    initCalendarMonth()
+
     return false
 }
 
@@ -71,10 +77,10 @@ function getTaskFromLS(key, value) {
 /**
  * saves the task to the local storage
  * @param {String} key  the name in the local storage
- * @param {Array} value the array saved to local storage
+ * @param {Array} valueToSet the array saved to local storage
  */
-function saveTaskToLS(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+function saveTaskToLS(key, valueToSet) {
+    localStorage.setItem(key, JSON.stringify(valueToSet))
 }
 
 /**
@@ -87,48 +93,59 @@ function renderTask(taskToRender) {
         const taskText = taskToRender[i].text
         const taskTime = taskToRender[i].time
         const taskDate = taskToRender[i].date
-        const taskNumber = taskToRender[i].id
+        const taskId = taskToRender[i].id
 
-        const edit = "<i class='material-icons edit" + taskNumber + "'>edit</i>"
-        const trash = "<i class='" + taskNumber + " material-icons'>delete</i>"
+        const edit = "<i class='material-icons edit'>edit</i>"
+        const trash = "<i class='material-icons delete'>delete</i>"
 
         $("ul").append(
-            "<li><div><p>" + taskText + "</p><p>" + edit + trash + "</p></div><div><p> time: " +
+            "<li><div><p>" + taskText + "</p><p id ='" + taskId + "'>" + edit + trash + "</p></div><div><p> time: " +
             taskTime + "</p><p> date: " + taskDate + "</p></div></li >")
-
-
 
         addScrollToList()
 
-        $(".material-icons").click(function () {
-            removeTaskFromLS(taskNumber)
+        $("#" + taskId + " .delete").click(function () {
+            elementId = $(this).parent().attr('id')
+            removeTaskFromLS(elementId)
             removeTask()
+            initCalendarMonth()
         })
 
-        $(".edit").click(function () {
-            editItem(taskNumber, taskToRender)
+        $("#" + taskId + " .edit").click(function () {
+            editCount++
+            if (editCount > 1) {
+                return
+            }
+            elementId = $(this).parent().attr('id')
+            editItem(elementId, taskToRender)
 
-            removeTaskFromLS(taskNumber)
-            removeTask()
         })
     }
-
 }
 
 /**
  * Allows user to edit an item
- * @param {Number} taskNumber 
- * @param {Array} taskToRender 
+ * @param {Number} elementId timestamp created for each element
+ * @param {Array} taskToRender the array to be passed
  */
-function editItem(taskNumber, taskToRender) {
-    const editText = taskToRender[taskNumber].text
-    const editTime = taskToRender[taskNumber].time
-    const editDate = taskToRender[taskNumber].date
-    console.log(taskNumber)
-    $("input[type=time]").val(editTime)
-    $("input[type=date]").val(editDate)
-    $(":text").val(editText)
+function editItem(elementId, taskToRender) {
+    const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
 
+    for (let i = 0; i < modifiedTaskDetail.length; i++) {
+        if (elementId == modifiedTaskDetail[i].id) {
+            const editText = taskToRender[i].text
+            const editTime = taskToRender[i].time
+            const editDate = taskToRender[i].date
+
+            $(":text").val(editText)
+            $("input[type=time]").val(editTime)
+            $("input[type=date]").val(editDate)
+            $("input[type=submit]").val("Edit Task")
+            $("input").css({ "background-color": "white", "color": "red", "border": "solid red 0.5px" })
+        }
+    }
+    removeTaskFromLS(elementId)
+    removeTask()
 }
 
 /**
@@ -147,13 +164,13 @@ function removeTask() {
 
 /**
  * Removes task from Local Storage
- * @param {Number} taskNumber 
+ * @param {Number} elementId timestamp created for each element
  */
-function removeTaskFromLS(taskNumber) {
+function removeTaskFromLS(elementId) {
     const modifiedTaskDetail = JSON.parse(localStorage.getItem('task-details'))
-    const number = taskNumber
+
     for (let i = 0; i < modifiedTaskDetail.length; i++) {
-        if (modifiedTaskDetail[i].number == number) {
+        if (elementId == modifiedTaskDetail[i].id) {
             modifiedTaskDetail.splice(i, 1)
             break
         }
@@ -161,12 +178,12 @@ function removeTaskFromLS(taskNumber) {
     saveTaskToLS('task-details', modifiedTaskDetail)
 }
 
-function getTaskCountPerDay(searchTaskDate, dateBox) {
-
-    TaskCount = document.createElement("p")
-    dateBox.appendChild(TaskCount)
-    let latestTaskDetail = JSON.parse(localStorage.getItem('task-details')) || []
-
+/**
+ * gets the number of counts in a day 
+ * @param {String} searchTaskDate the relevant date
+ */
+function getTaskCountPerDay(searchTaskDate) {
+    const latestTaskDetail = JSON.parse(localStorage.getItem('task-details')) || []
     let numberOfTasks = 0
 
     for (let i = 0; i < latestTaskDetail.length; i++) {
@@ -175,16 +192,40 @@ function getTaskCountPerDay(searchTaskDate, dateBox) {
         }
     }
     if (numberOfTasks > 0) {
-        return TaskCount.innerText = numberOfTasks
+        return numberOfTasks
     }
     else {
-        return TaskCount.innerText = ""
+        return ""
     }
 }
 
-//edit to be improved
-//sorting to be improved
-//add swedish holidays
-//filter by chosen day
+/**
+ * Renders the task for the selected day
+ */
+function filterTasks() {
+    $("#dateContainer > div").on("click", function () {
+        const selectedElement = $(event.target).attr("data-date")
+        let allTasks = JSON.parse(localStorage.getItem('task-details')) || []
+        console.log(clicked)
+        if (clicked != ($(event.target).attr("data-date"))) {
+            console.log($(event.target).attr("data-date"))
+            $('[data-date="' + selectedElement + '"]').css({ "background-color": "rgba(173, 239, 209, 1.00)" })
+            $('[data-date]').not('[data-date="' + selectedElement + '"]').css({ "background-color": "" })
+            let filterTasks = allTasks.filter(task => {
+                return task.date === selectedElement
+            })
+            console.log(filterTasks)
+            renderTask(filterTasks)
+            clicked = ($(event.target).attr("data-date"))
+        }
+        else {
+            $('[data-date]').css({ "background-color": "" })
+            console.log("clicked")
+            renderTask(allTasks)
+        }
+
+    })
+}
+
 
 
