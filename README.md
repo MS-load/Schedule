@@ -41,11 +41,12 @@ A mobile friendly planner<br>
         <ul>
             <li>icons8.com</li>
             <li>Material-UI</li>
+            <li>flaticon.com</li>
         </ul>
     </li>
     <li>Fonts
         <ul>
-            <li>Google fonts: 'Maven Pro', 'Patua One'</li>
+            <li>Google fonts: 'PT Serif', 'sans-serif'</li>
         </ul>
     </li>
 </ul>
