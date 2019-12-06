@@ -1,3 +1,5 @@
+
+
 /**
  * On load
  */
@@ -5,6 +7,8 @@ $(document).ready(function () {
     renderSavedTasksList()
     renderDefaultValues()
     $("form").on("submit", getTask)
+    
+    filterTasks()
 })
 
 /**
@@ -190,10 +194,29 @@ function getTaskCountPerDay(searchTaskDate) {
     }
 }
 
+function filterTasks() {
+    $("#dateContainer > div").on("click", function () {
+        const selectedElement = $(event.target).attr("data-date")
+        let allTasks = JSON.parse(localStorage.getItem('task-details')) || []
+        
+        if (clicked) {
+            console.log($(event.target).attr("data-date"))
+            $('[data-date="' + selectedElement + '"]').css({ "background-color": "rgba(173, 239, 209, 1.00)" })
+            $('[data-date]').not('[data-date="' + selectedElement + '"]').css({ "background-color": "" })
+            let filteredTasks = allTasks.filter(task => {
+                return task.date === selectedElement
+            }) 
+            console.log (filteredTasks)
+            renderTask(filteredTasks)
+        }
+        else {
+            $('[data-date="' + selectedElement + '"]').css({ "background-color": "" })
+            renderTask(allTasks)
+        }
+        clicked = !clicked
+    })
+}
 
-
-
-//filter by chosen day
 //sorting to be improved
 
 

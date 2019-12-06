@@ -1,4 +1,5 @@
 const date = new Date()
+let clicked = true
 window.addEventListener("load", loadPage)
 
 /**
@@ -92,14 +93,8 @@ function renderDatesOfMonth(dateContainer, date) {
 
 
     }
-    $("#dateContainer > div").on("click", function () {
-        console.log( $(event.target).attr("data-date"))
-        const selectedElement =  $(event.target).attr("data-date")
-        $('[data-date="'+ selectedElement +'"]').css({"background-color": "yellow"})
-      
 
-     })
-    
+
     holidaysForCurrentMonth(year, month)
 
 }
@@ -146,8 +141,8 @@ function renderHolidays(allDays) {
         }
     }
     for (let i = 0; i < holidays.length; i++) {
-        let redDays = document.querySelector("[data-date='" + holidays[i] + "']")
-        redDays.style.color = "red"
+        let redDays = $("[data-date='" + holidays[i] + "']")
+        $(redDays).css({ "color": "red" })
     }
 }
 
