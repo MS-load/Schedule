@@ -1,3 +1,5 @@
+/* General Styles */
+
 html {
     font-size: 1rem;
     font-family: 'PT Serif', sans-serif;
@@ -12,6 +14,8 @@ body {
     grid-template-rows: 1fr 8fr;
 }
 
+/* Title */
+
 header {
     border: 1px solid black;
     background: rgba(0, 32, 63, 1.00);
@@ -19,6 +23,8 @@ header {
     text-align: center;
     flex-grow: 0.25;
 }
+
+/* Main Display */
 
 main {
     flex-grow: 10;
@@ -33,6 +39,8 @@ main {
     grid-template-areas: "today""task";
     border-right: 1px solid grey;
 }
+
+/* Current Date And Time */
 
 .today {
     grid-area: today;
@@ -62,6 +70,8 @@ main {
     margin: .2rem 1rem .2rem 0;
 }
 
+/* Tasks */
+
 .todo {
     grid-area: task;
     background: rgba(0, 32, 63, 1.00);
@@ -71,6 +81,37 @@ main {
     justify-content: space-between;
     align-content: center;
     padding: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 15rem;
+    overflow: auto;
+}
+
+li {
+    border-bottom: 1px outset rgba(173, 239, 209, 0.5);
+    padding: 0.25rem;
+}
+
+li>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+li div>p {
+    align-content: center;
+    margin: 0;
+    font-size: medium;
+    padding-left: 0rem;
+}
+
+.material-icons {
+    padding-left: 1rem;
 }
 
 form {
@@ -99,32 +140,7 @@ input {
     color: rgba(0, 32, 63, 1.00);
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    height: 15rem;
-    overflow: auto;
-}
-
-li {
-    border-bottom: 1px outset rgba(173, 239, 209, 0.5);
-    padding:0.25rem;
-}
-
-li>div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-}
-
-
-li div>p {
-    align-content: center;
-    margin:0;
-}
-
+/* Calendar */
 .calendar-container {
     background-color: rgb(243, 241, 241);
     grid-template-columns: 1fr;
@@ -142,8 +158,8 @@ li div>p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
+
 .month-container h3 {
     margin-top: 0;
 }
@@ -160,7 +176,6 @@ li div>p {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: 1fr;
-    
 }
 
 #dateContainer div {
@@ -168,7 +183,7 @@ li div>p {
     background-color: white;
     padding: 0.5rem;
     text-align: left;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: -1px 0 0 -1px;
@@ -176,13 +191,12 @@ li div>p {
 }
 
 #dateContainer div p {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     text-align: right;
-    bottom:0;
+    bottom: 0;
     font-size: 0.7rem;
-    color:  grey;
-
+    color: grey;
 }
 
 .weekdays-container {

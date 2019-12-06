@@ -11,7 +11,7 @@ function loadSite() {
  * Publish the current date, month and time
  * 
  */
-function uppdateCurrentTime() {
+function updateCurrentTime() {
     const dateContainer = document.getElementsByClassName("date")[0]
     const weekdayContainer = document.getElementsByClassName("weekday")[0]
     const timeContainer = document.getElementsByClassName("time")[0]

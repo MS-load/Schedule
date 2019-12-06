@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Schedule</title>
+    <link rel="shortcut icon" href="./media/favicon.png" type="image/png">
 
     <!-- STYLE SHEET -->
     <link rel="stylesheet" href="style.css">
@@ -17,7 +18,6 @@
     <script src="./Scripts/today.js"></script>
     <script src="./Scripts/calendar.js"></script>
     <script src="./Scripts/todo.js"></script>
-    <script src="./Scripts/holidays.js"></script>
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=PT+Serif&display=swap" rel="stylesheet">
@@ -26,39 +26,44 @@
 
 <body>
 
-    <!-- TITLE -->
+    <!-- Title -->
     <header>
         <h3>Personal Planner</h3>
     </header>
 
+    <!-- Main Display -->
     <main>
+        
         <div class="left">
-            <!-- CURRENT DATE AND TIME -->
+            <!-- Current Date And Time -->
             <div class="today">
                 <div class="today-date">
                     <p class="date"></p>
                     <p class="weekday"></p>
                     <p class="time"></p>
                 </div>
+<<<<<<< HEAD
                 <div><img class="season-icon" src=""></div>
+=======
+                <div><img class="season-icon" src="./media/beach.svg"></div>
+>>>>>>> master
             </div>
 
-            <!-- TASKS -->
+            <!-- Tasks -->
             <div class="todo">
                 <ul>
                     <!-- Task populated from JavaScript -->
                 </ul>
                 <form>
-                    <input type="text" name="text" required>
+                    <input type="text" name="text" autofocus required>
                     <input type="time" name="time">
                     <input type="date" name="date" required>
-
                     <input type="submit" value="Add task">
                 </form>
             </div>
         </div>
 
-        <!-- CALENDAR -->
+        <!-- Calendar -->
         <div class="calendar-container">
             <div class="month-container">
                 <h3 id="previous-button">&lt;</h3>
@@ -78,7 +83,6 @@
             <div id="dateContainer">
             </div>
         </div>
-
     </main>
 
 </body>
