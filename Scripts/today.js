@@ -2,7 +2,7 @@
 window.addEventListener('load', loadSite)
 
 function loadSite() {
-    uppdateCurrentTime()
+    updateCurrentTime()
     changeIcon()
 }
 

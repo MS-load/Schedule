@@ -9,6 +9,7 @@ function loadPage() {
     initCalendarMonth()
     setupEventListeners()
     filterTasks()
+    
 }
 
 /**
