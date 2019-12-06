@@ -1,4 +1,5 @@
 const date = new Date()
+
 window.addEventListener("load", loadPage)
 
 /**
@@ -82,6 +83,7 @@ function renderDatesOfMonth(dateContainer, date) {
         let dateBox = document.createElement("div")
         dateBox.innerText = i
         dateContainer.appendChild(dateBox)
+       
 
 
         const month = (date.getMonth() + 1)
@@ -91,6 +93,7 @@ function renderDatesOfMonth(dateContainer, date) {
         getTaskCountPerDay(searchTaskDate, dateBox)
         /* getHolidays(searchTaskDate, dateBox) */
     }
+
 }
 
 /**
@@ -104,3 +107,4 @@ function updateMonthName(date) {
     const monthName = month[date.getMonth()]
             document.getElementById("calendar").innerText = monthName + ' ' + date.getFullYear()
 }
+
