@@ -14,7 +14,7 @@ $(document).ready(function () {
  *Renders the already saved tasks from the local storage
  */
 function renderSavedTasksList() {
-    const storedTasks = JSON.parse(localStorage.getItem('task-details'))
+    let storedTasks = JSON.parse(localStorage.getItem('task-details'))
     if (storedTasks !== null) {
         renderTask(storedTasks)
     } else {
