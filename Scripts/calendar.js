@@ -1,5 +1,6 @@
+
 const date = new Date()
-let clicked = true
+let clicked = null
 window.addEventListener("load", loadPage)
 
 /**
@@ -8,14 +9,15 @@ window.addEventListener("load", loadPage)
 function loadPage() {
     initCalendarMonth()
     setupEventListeners()
+    filterTasks()
 }
 
 /**
  * Starts to write the calendar for this month
  */
 function initCalendarMonth() {
-    clearDivs()
     const dateContainer = document.getElementById("dateContainer")
+    clearDivs()
     updateMonthName(date)
     getCorrectFirstDay(dateContainer, date)
     renderDatesOfMonth(dateContainer, date)
@@ -90,13 +92,8 @@ function renderDatesOfMonth(dateContainer, date) {
         TaskCount = document.createElement("p")
         dateBox.appendChild(TaskCount)
         TaskCount.innerText = getTaskCountPerDay(searchDate)
-
-
     }
-
-
     holidaysForCurrentMonth(year, month)
-
 }
 
 /**
@@ -145,7 +142,3 @@ function renderHolidays(allDays) {
         $(redDays).css({ "color": "red" })
     }
 }
-
-
-
-

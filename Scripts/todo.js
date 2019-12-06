@@ -1,4 +1,4 @@
-
+let editCount = 0
 
 /**
  * On load
@@ -7,8 +7,6 @@ $(document).ready(function () {
     renderSavedTasksList()
     renderDefaultValues()
     $("form").on("submit", getTask)
-    
-    filterTasks()
 })
 
 /**
@@ -56,6 +54,7 @@ function getTask(event) {
     $(":text").val("")
     $("input[type=submit]").val("Add Task")
     $("input").css({ "background-color": "", "color": "", "border": "" })
+    editCount = 0
     initCalendarMonth()
 
     return false
@@ -112,8 +111,13 @@ function renderTask(taskToRender) {
         })
 
         $("#" + taskId + " .edit").click(function () {
+            editCount++
+            if (editCount > 1) {
+                return
+            }
             elementId = $(this).parent().attr('id')
             editItem(elementId, taskToRender)
+
         })
     }
 }
@@ -194,29 +198,33 @@ function getTaskCountPerDay(searchTaskDate) {
     }
 }
 
+/**
+ * Renders the task for the selected day
+ */
 function filterTasks() {
     $("#dateContainer > div").on("click", function () {
         const selectedElement = $(event.target).attr("data-date")
         let allTasks = JSON.parse(localStorage.getItem('task-details')) || []
-        
-        if (clicked) {
+        console.log(clicked)
+        if (clicked != ($(event.target).attr("data-date"))) {
             console.log($(event.target).attr("data-date"))
             $('[data-date="' + selectedElement + '"]').css({ "background-color": "rgba(173, 239, 209, 1.00)" })
             $('[data-date]').not('[data-date="' + selectedElement + '"]').css({ "background-color": "" })
-            let filteredTasks = allTasks.filter(task => {
+            let filterTasks = allTasks.filter(task => {
                 return task.date === selectedElement
-            }) 
-            console.log (filteredTasks)
-            renderTask(filteredTasks)
+            })
+            console.log(filterTasks)
+            renderTask(filterTasks)
+            clicked = ($(event.target).attr("data-date"))
         }
         else {
-            $('[data-date="' + selectedElement + '"]').css({ "background-color": "" })
+            $('[data-date]').css({ "background-color": "" })
+            console.log("clicked")
             renderTask(allTasks)
         }
-        clicked = !clicked
+
     })
 }
 
-//sorting to be improved
 
 
